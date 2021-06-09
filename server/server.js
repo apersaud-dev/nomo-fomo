@@ -14,6 +14,6 @@ app.use((req, res, next) => {
     next();
 })
 
-app.listen(port, () => {
-    console.log("Server is listening at http://localhost:" + port);
-})
+app.listen(`${process.env.API_URL}${process.env.PORT}`, () => {
+    console.log(`Server running at ${process.env.API_URL}${process.env.PORT}`)
+});
