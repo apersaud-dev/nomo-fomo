@@ -18,13 +18,16 @@ class MapTest extends Component {
   render() {
 
     console.log(this.props.center);
-    console.log(process.env.REACT_APP_GOOGLE_MAP_API_KEY);
-    console.log(process.env.REACT_APP_TEST);
     return (
       // Important! Always set the container height explicitly
       <div className="map__container" >
         <GoogleMapReact
-          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY}}
+          bootstrapURLKeys={{
+               key: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
+               language: 'en',
+                region: 'ca',
+                libraries: ['places']
+            }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
