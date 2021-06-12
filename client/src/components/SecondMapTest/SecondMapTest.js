@@ -1,5 +1,5 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import mapStyles from './MapStyles';
 import usePlacesAutocomplete, {
     getGeocode,
@@ -15,39 +15,55 @@ import usePlacesAutocomplete, {
   } from "@reach/combobox";
   import "@reach/combobox/styles.css";
 
-const containerStyle = {
-  width: '96vw',
-  height: '90vh'
-};
+const libraries = ['places'];
 
-const center = {
-  lat: 43.642583,
-  lng: -79.387060
+const containerStyle = {
+    width: '96vw',
+    height: '90vh'
 };
 
 const options = {
-  styles: mapStyles,
-  disableDefaultUI: true,
-  zoomControl: true,
+    styles: mapStyles,
+    disableDefaultUI: true,
+    zoomControl: true,
 }
 
-const libraries = ['places'];
-
-
+const center = {
+    lat: 43.642583,
+    lng: -79.387060
+};
 
 function SecondMapTest() {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
-    libraries,
-  })
-
-const mapRef = React.useRef();
-const onMapLoad = React.useCallback((map) => {
-    mapRef.current = map;
-  }, []);
+    const [markers, setMarkers] = React.useState([]);
   
-  const [map, setMap] = React.useState(null)
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
+        libraries,
+    })
+
+
+    const onMapClick = React.useCallback((e) => {
+        setMarkers((current) => [
+            ...current,
+            {
+            lat: e.latLng.lat(),
+            lng: e.latLng.lng(),
+            time: new Date(),
+            },
+        ]);
+        }, []
+    );
+
+  
+    
+
+    const mapRef = React.useRef();
+    const onMapLoad = React.useCallback((map) => {
+        mapRef.current = map;
+    }, []);
+  
+    const [map, setMap] = React.useState(null)
 
 //   const onLoad = React.useCallback(function callback(map) {
 //     const bounds = new window.google.maps.LatLngBounds();
@@ -55,14 +71,14 @@ const onMapLoad = React.useCallback((map) => {
 //     setMap(map)
 //   }, [])
 
-const panTo = React.useCallback(({ lat, lng }) => {
-    mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
-  }, []);
+    const panTo = React.useCallback(({ lat, lng }) => {
+        mapRef.current.panTo({ lat, lng });
+        mapRef.current.setZoom(14);
+    }, []);
 
   
 
-  console.log(center);
+  
   return isLoaded ? (
     <section>
         <Locate panTo={panTo} />
@@ -74,11 +90,15 @@ const panTo = React.useCallback(({ lat, lng }) => {
             zoom={17}
             options={options}
             onLoad={onMapLoad}
-           >
-            { /* Child components, such as markers, info windows, etc. */ }
-            <></>
+            onClick={onMapClick}
+        >
+            {markers.map((marker) => 
+                <Marker 
+                    key={marker.time.toISOString()} 
+                    position={{lat: marker.lat, lng: marker.lng}}
+                />)}
         </GoogleMap>
-      </section>
+    </section>
   ) : <></>
 }
 
