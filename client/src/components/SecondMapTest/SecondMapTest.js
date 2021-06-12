@@ -34,7 +34,12 @@ const center = {
 };
 
 function SecondMapTest() {
-    const [markers, setMarkers] = React.useState([]);
+    const [markers, setMarkers] = React.useState(
+        [
+            {lat: 43.64472836237144, lng: -79.3850612094602, time: 1623523475554},
+            {lat: 43.64428194549737, lng: -79.38479835297674, time: 1623523518721},
+            {lat: 43.643986920351274, lng: -79.38869292046637, time: 1623523530862},
+    ]);
   
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
@@ -49,7 +54,7 @@ function SecondMapTest() {
             {
             lat: e.latLng.lat(),
             lng: e.latLng.lng(),
-            time: new Date(),
+            time: Date.now(),
             },
         ]);
         }, []
@@ -94,8 +99,9 @@ function SecondMapTest() {
         >
             {markers.map((marker) => 
                 <Marker 
-                    key={marker.time.toISOString()} 
+                    key={marker.time} 
                     position={{lat: marker.lat, lng: marker.lng}}
+                    onClick={(e) => {console.log(marker.lat, marker.lng, marker.time)}}
                 />)}
         </GoogleMap>
     </section>
