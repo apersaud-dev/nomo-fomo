@@ -1,0 +1,44 @@
+@use './../../partials/base/reset' as *;
+
+.sidebar{
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 4rem;
+    margin-right: 250px;
+
+    &--open {
+        width: 250px;
+        margin-left: 250px;
+    }
+
+    &__close-button {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 2rem;
+        margin-left: 50px;
+    }
+
+    &__list-item {
+        border-top: 1px solid #818181;
+        border-bottom: 1px solid #818181;
+        display: flex;
+    }
+
+    &__right {
+        width: 75%;
+    }
+
+    &__description {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 18px;
+        color: #818181;
+    }
+}

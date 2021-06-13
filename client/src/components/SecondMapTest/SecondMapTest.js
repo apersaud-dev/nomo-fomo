@@ -14,6 +14,7 @@ import usePlacesAutocomplete, {
     ComboboxOption,
   } from "@reach/combobox";
   import "@reach/combobox/styles.css";
+  import Sidebar from './../Sidebar'; 
 
 const libraries = ['places'];
 
@@ -86,9 +87,13 @@ function SecondMapTest() {
   
   return isLoaded ? (
     <section>
+        <Sidebar 
+            markers={markers}
+        />
         <Locate panTo={panTo} />
         <Search panTo={panTo} />
 
+      
         <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
