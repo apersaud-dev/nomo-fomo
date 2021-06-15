@@ -1,10 +1,10 @@
 module.exports = {
-    client: 'mysql',
-    connection: {
-        host: '127.0.0.1',
-        user: 'root',
-        password: 'rootroot',
-        database: 'nomo_fomo',
-        charset: 'utf-8',
-    },
-}
+  client: 'mysql',
+  connection: {
+    host: '127.0.0.1',
+    user: 'root',
+    password: 'rootroot',
+    database: 'nomo_fomo',
+    charset: 'utf8',
+  },
+};
