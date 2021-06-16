@@ -18,9 +18,9 @@ router
 
 // get a single business by id
 router
-    .route('/:id')
+    .route('/:businessId')
     .get((req, res) => {
-        Business.where({ display_id: req.params.id})
+        Business.where({ display_id: req.params.businessId})
         .fetch({ withRelated: ['events'] })
         .then((business) => {
             res.status(200).json(business);
@@ -42,7 +42,7 @@ router
             address: req.body.address,
             city: req.body.city,
             province: req.body.province,
-            postal_code: req.body.postal,
+            postal_code: req.body.postal_code,
             country: req.body.country,
             latitude: req.body.latitude,
             longitude: req.body.longitude
@@ -53,7 +53,7 @@ router
             res.status(201).json(newBusiness);
         })
         .catch((err) => {
-            // console.log(err);
+            console.log(err);
             // res.json(err);
             res.status(400).json({ message: 'ERROR: cannot create new business profile'});
         });
@@ -61,9 +61,9 @@ router
 
 // edit existing business profile
 router
-    .route('/:id')
+    .route('/:businessId')
     .put((req, res) => {
-        Business.where({ display_id: req.params.id})
+        Business.where({ display_id: req.params.businessId})
         .fetch()
         .then((business) => {
             business
@@ -72,8 +72,10 @@ router
                     address: req.body.address,
                     city: req.body.city,
                     province: req.body.province, 
-                    postal_code: req.body.postal,
+                    postal_code: req.body.postal_code,
                     country: req.body.country,
+                    latitude: req.body.latitude,
+                    longitude: req.body.longitude
                 })
                 .then((updatedBusiness) => {
                     console.log(req.body)
@@ -86,14 +88,19 @@ router
     });
 
 router
-    .route('/:id')
+    .route('/:businessId')
     .delete((req, res) => {
-        Business.where({ display_id: req.params.id})
-            .destroy()
-            .then(()=> {
-                res.status(200).json({ message: '${} Business Profile has been deleted' });
+        Business.where({ display_id: req.params.businessId})
+            .fetch({ withRealed: ['events'] })
+            .then((business) => {
+                const name = business.attributes.name;
+
+                Business.where({ display_id: req.params.businessId})
+                .destroy()
+                res.status(200).json({ message: `${name} profile has been deleted ` })
             })
-            .catch(() => {
+            .catch((err) => {
+                // console.log(err);
                 res.status(400).json({ message: 'ERROR: could not delete business profile'})
             });
     });
