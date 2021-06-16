@@ -2,7 +2,7 @@
 function App() {
   return (
     <div className="App">
-        <a href="/auth/google">Sign In with Google</a>
+        <a href="http://localhost:8080/auth/google">Sign In with Google</a>
     </div>
   );
 }
