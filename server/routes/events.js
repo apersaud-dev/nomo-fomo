@@ -1,4 +1,5 @@
 const express = require('express');
+const IsLoggedIn = require('./../middleware/IsLoggedIn');
 const { v4: uuidv4 } = require('uuid');
 const Business = require('./../models/businesses');
 const Events = require('./../models/events');
@@ -25,7 +26,7 @@ router
 // create a new event
 router
     .route('/:businessId')
-    .post((req, res) => {
+    .post(IsLoggedIn, (req, res) => {
         const businessDisplayId = req.params.businessId;
         Business.where({ display_id: businessDisplayId})
         .fetch()
@@ -58,7 +59,7 @@ router
 // edit an existing event
 router
     .route('/:eventId')
-    .put((req, res) => {
+    .put(IsLoggedIn, (req, res) => {
         Events.where({ display_id: req.params.eventId})
         .fetch()
         .then((event) => {
@@ -87,7 +88,7 @@ router
 // delete an existing event
 router
     .route('/:eventId')
-    .delete((req, res) => {
+    .delete(IsLoggedIn, (req, res) => {
         Events.where({ display_id: req.params.eventId})
         .fetch()
         .then((event) => {

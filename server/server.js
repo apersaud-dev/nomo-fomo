@@ -11,6 +11,8 @@ const passport = require('passport');
 // const localStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 require('dotenv').config();
+// require('passport-setup.js');
+const IsLoggedIn = require('./middleware/IsLoggedIn');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -73,6 +75,7 @@ passport.deserializeUser((businessDisplayId, cb) => {
         .fetch()
         .then(
             (user) => {
+                // console.log('found user');
                 cb(null, user);
             },
             
@@ -84,14 +87,6 @@ passport.deserializeUser((businessDisplayId, cb) => {
             cb(err);
         });
 });
-
-const isLoggedIn = (req, res, next) => {
-    if (req.user) {
-        next();
-    } else {
-        res.status(401).json({ message: 'ERROR: User does not exist'});
-    }
-};
 // end of passport setup and configuration
 
 
@@ -101,10 +96,10 @@ app.get('/', (req, res) => res.send('Welcome to my API') );
 
 app.get('/login', (req, res) => res.send('You failed to log in!') );
 
-app.get('/good', isLoggedIn, (req, res) => {
-    // console.log(req.user);
-    res.send(`Welcome ${req.user.attributes.name}`)
-} );
+// app.get('/profile', IsLoggedIn, (req, res) => {
+//     // console.log(req.user);
+//     res.send(`Welcome ${req.user.attributes.name}`)
+// } );
 
 
 app.get('/auth/google', 
@@ -114,21 +109,14 @@ app.get('/auth/google',
 app.get('/auth/google/callback', 
     passport.authenticate('google', { failureRedirect: '/login' }),
     function(req, res) {
-        res.redirect('/good');
+        res.redirect('http://localhost:3000/profile');   //should this redirect to a localhost:3000 address?
 });
 
 app.get('/logout', (req, res) => {
     req.session = null;
     req.logout();
-    res.redirect('/');
+    res.redirect('/');  //should this redirect to a localhost:3000 address?
 })
-
-// https://www.youtube.com/watch?v=o9e3ex-axzA
-
-
-
-
-
 
 
 // api routes
@@ -138,3 +126,18 @@ app.use('/events', eventsRoute);
 app.listen(port, () => {
     console.log(`Server is listening at ${process.env.API_URL}${port}`);
 })
+
+
+
+
+// https://www.youtube.com/watch?v=o9e3ex-axzA
+
+/* THIS HAS BEEN MOVED TO A SEPARATE FILE
+const isLoggedIn = (req, res, next) => {
+    if (req.user) {
+        next();
+    } else {
+        res.status(401).json({ message: 'ERROR: User does not exist'});
+    }
+};
+*/
