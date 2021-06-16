@@ -4,14 +4,21 @@
   "description": "Nomo Fomo - Andrew Persaud Capston Project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate": "knex migrate:latest",
+    "migrate:down": "knex migrate:down",
+    "migrate:rollback": "knex migrate:rollback",
+    "seed": "knex seed:run"
   },
   "author": "Andrew Persaud",
   "license": "ISC",
   "dependencies": {
+    "bookshelf": "^1.2.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "knex": "^0.95.6",
+    "mysql": "^2.18.1",
     "uuidv4": "^6.2.8"
   }
 }
