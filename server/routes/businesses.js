@@ -1,4 +1,5 @@
 const express = require('express');
+const IsLoggedIn = require('./../middleware/IsLoggedIn');
 const { v4: uuidv4 } = require('uuid');
 const Business = require('./../models/businesses');
 const router = express.Router();
@@ -16,7 +17,7 @@ router
         );
     });
 
-// get a single business by id
+// get a single business with all related events by id
 router
     .route('/:businessId')
     .get((req, res) => {
@@ -62,7 +63,7 @@ router
 // edit existing business profile
 router
     .route('/:businessId')
-    .put((req, res) => {
+    .put(IsLoggedIn, (req, res) => {
         Business.where({ display_id: req.params.businessId})
         .fetch()
         .then((business) => {
@@ -89,7 +90,7 @@ router
 
 router
     .route('/:businessId')
-    .delete((req, res) => {
+    .delete(IsLoggedIn, (req, res) => {
         Business.where({ display_id: req.params.businessId})
             .fetch({ withRealed: ['events'] })
             .then((business) => {
