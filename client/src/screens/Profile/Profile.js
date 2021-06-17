@@ -49,6 +49,7 @@ function Profile(props) {
                 <h3>{province}</h3>
                 <h3>{postal_code}</h3>
                 <h3>{country}</h3>
+                <hr></hr>
                 <EventList events={events} />
             </main>
         )
