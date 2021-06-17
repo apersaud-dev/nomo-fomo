@@ -24,11 +24,10 @@ function EditProfile(props) {
             ...prevState,
             [name]: value
         })));
-    }
+    };
     
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        console.log(businessInfo.country);
         const updatedBusinessInfo = {
             name: businessInfo.name,
             address: businessInfo.address,

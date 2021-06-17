@@ -4,6 +4,7 @@ import './EventItems.scss';
 function EventItems(props) {
     const { display_id, end_time, image, name, start_time } = props.eventData;
     const date = (new Date(start_time)).toDateString();
+    console.log(start_time);
     const start = (new Date(start_time)).toLocaleTimeString();
     const end = (new Date(end_time)).toLocaleTimeString();
     return (
