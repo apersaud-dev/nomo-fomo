@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './EditProfile.scss';
 
@@ -95,6 +96,7 @@ function EditProfile(props) {
                         <label className="form__label" htmlFor="country">Country</label>
                         <input type="text" id="country" name="country" value={businessInfo.country} onChange={handleInputChange}/>
                     </div>
+                    <Link to="/profile">Cancel</Link>
                     <button type="submit">Save</button>
                 </form>
             </main>

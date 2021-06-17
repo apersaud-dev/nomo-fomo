@@ -3,6 +3,7 @@ import Home from './screens/Home';
 import Login from './screens/Login';
 import Profile from './screens/Profile';
 import EditProfile from './screens/EditProfile';
+import EditEvent from './screens/EditEvent';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
           <Route path="/profile-edit" component={EditProfile} />
-          {/* <Route path="/edit-event" component={EditEvent} /> */}
+          <Route path="/edit/:eventId" component={EditEvent} />
           {/*<Route path="create-event" component={CreateEvent} /> */}
           {/* <Route path="/map" component={Map} /> */}
 
