@@ -96,9 +96,9 @@ app.get('/', (req, res) => res.send('Welcome to my API') );
 
 app.get('/login', (req, res) => res.send('You failed to log in!') );
 
-// app.get('/profile', IsLoggedIn, (req, res) => {
+// app.get('http://localhost:3000/profile', IsLoggedIn, (req, res) => {
 //     // console.log(req.user);
-//     res.send(`Welcome ${req.user.attributes.name}`)
+//     res.send(`Welcome ${req.user.attributes}`)
 // } );
 
 
@@ -109,15 +109,30 @@ app.get('/auth/google',
 app.get('/auth/google/callback', 
     passport.authenticate('google', { failureRedirect: '/login' }),
     function(req, res) {
-        res.redirect('http://localhost:3000/profile');   //should this redirect to a localhost:3000 address?
+        // console.log(req);
+        // console.log(res.sessionID);
+        // console.log(req.user.attributes.display_id);
+        // console.log(res);
+        // console.log(res.user.attributes);
+        res.redirect('http://localhost:3000/profile');   
 });
 
 app.get('/logout', (req, res) => {
     req.session = null;
     req.logout();
-    res.redirect('/');  //should this redirect to a localhost:3000 address?
+    res.redirect('http://localhost:3000/');  //should this redirect to a localhost:3000 address?
 })
 
+// app.get('/trial', (req, res) => {
+//     if (!req.user) {
+//         res.sendStatus(401);
+//         return;
+//     }
+//     // console.log(req.user);
+//     // console.log(req.session);
+//     // console.log(Object.keys(req));
+//     res.send(200);
+// })
 
 // api routes
 app.use('/business', businessesRoute);

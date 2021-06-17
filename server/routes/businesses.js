@@ -4,11 +4,13 @@ const { v4: uuidv4 } = require('uuid');
 const Business = require('./../models/businesses');
 const router = express.Router();
 
-// get all businesses with related events
+// get a single businesses with all related events
 router
     .route('/')
-    .get((req, res) => {
-        Business.fetchAll({ withRelated: ['events']})
+    .get(IsLoggedIn, (req, res) => {
+        const displayId = req.session.passport.user;
+        Business.where({ display_id: displayId})
+        .fetchAll({ withRelated: ['events']})
         .then((businesses) => {
             res.status(200).json(businesses);
         })
@@ -18,19 +20,19 @@ router
     });
 
 // get a single business with all related events by id
-router
-    .route('/:businessId')
-    .get((req, res) => {
-        Business.where({ display_id: req.params.businessId})
-        .fetch({ withRelated: ['events'] })
-        .then((business) => {
-            res.status(200).json(business);
-            // res.json(req.params);
-        })
-        .catch(() => {
-            res.status(400).json({ message: 'ERROR: cannot fetch business data'});
-        })
-    });
+// router
+//     .route('/:businessId')
+//     .get((req, res) => {
+//         Business.where({ display_id: req.params.businessId})
+//         .fetch({ withRelated: ['events'] })
+//         .then((business) => {
+//             res.status(200).json(business);
+//             // res.json(req.params);
+//         })
+//         .catch(() => {
+//             res.status(400).json({ message: 'ERROR: cannot fetch business data'});
+//         })
+//     });
 
 // create a new business profile
 router
