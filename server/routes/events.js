@@ -21,6 +21,16 @@ router
 // get a single event by 
 router
     .route('/:eventId')
+    .get((req, res) => {
+        Events.where({ display_id: req.params.eventId})
+        .fetch()
+        .then((event) => {
+            res.status(200).json(event);
+        })
+        .catch(() => {
+            res.status(400).json({ message: "ERROR: cannot fetch event data"})
+        });
+    });
 
 
 // create a new event
@@ -60,19 +70,20 @@ router
 router
     .route('/:eventId')
     .put(IsLoggedIn, (req, res) => {
+        // console.log(req.body.updatedEvent);
         Events.where({ display_id: req.params.eventId})
         .fetch()
         .then((event) => {
             event
                 .save({
-                    name: req.body.name,
-                    start_time: req.body.start_time,
-                    end_time: req.body.end_time,
-                    description: req.body.description,
-                    restrictions: req.body.restrictions,
-                    fee: req.body.fee,
-                    image: req.body.image,
-                    category: req.body.category
+                    name: req.body.updatedEvent.name,
+                    start_time: req.body.updatedEvent.start_time,
+                    end_time: req.body.updatedEvent.end_time,
+                    description: req.body.updatedEventdescription,
+                    restrictions: req.body.updatedEvent.restrictions,
+                    fee: req.body.updatedEvent.fee,
+                    image: req.body.updatedEvent.image,
+                    category: req.body.updatedEvent.category
                 })
                 .then((updatedEvent) => {
                     console.log(updatedEvent);

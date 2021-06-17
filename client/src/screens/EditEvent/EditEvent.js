@@ -31,10 +31,14 @@ function EditEvent(props) {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
+        const start = date.format((new Date(eventInfo.start_time)), 'YYYY-MM-DD HH:mm');
+        const end = date.format((new Date(eventInfo.end_time)), 'YYYY-MM-DD HH:mm');
+        // console.log(start);
+        // console.log(end);
         const updatedEvent = {
             name: eventInfo.name,
-            start_time: eventInfo.start_time,
-            end_time: eventInfo.end_time,
+            start_time: start,
+            end_time: end,
             description: eventInfo.description,
             restrictions: eventInfo.restrictions,
             fee: eventInfo.fee,
@@ -45,13 +49,24 @@ function EditEvent(props) {
         axios
             .put(`http://localhost:8080/events/${eventId}`, {updatedEvent}, { withCredentials: true})
             .then((res) => {
-                console.log(res);
-                // props.history.goBack();
+                props.history.goBack();
             })
             .catch((err) => {
                 console.log(err);
             })
     }
+
+    const handleDelete = (e) => {
+        // e.preventDefault();
+        axios
+            .delete(`http://localhost:8080/events/${eventId}`, { withCredentials: true})
+            .then((res)=> {
+                props.history.goBack();
+            })
+            .catch((err) => {
+                console.log(err.response)
+            });
+    };
     
     if(!eventInfo) {
         return (
@@ -162,6 +177,7 @@ function EditEvent(props) {
                     <Link to="/profile">Cancel</Link>
                     <button type="submit">Save Event</button>
                 </form>
+                <button type="button" onClick={handleDelete}>Delete</button>
             </main>
         )
     }
