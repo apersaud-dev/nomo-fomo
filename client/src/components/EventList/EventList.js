@@ -13,7 +13,12 @@ function EventList(events) {
         return (
             <section>
                 <ul>
-                    <EventItems />
+                    {events.events.map((event) => {
+                        return (
+                            <EventItems eventData={event} />
+                        )
+                    })}
+                    {/* <EventItems /> */}
                 </ul>
             </section>
         )
