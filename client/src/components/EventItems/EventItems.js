@@ -22,7 +22,7 @@ function EventItems(props) {
                 </div>
             </div>
             <div className="event__left">
-                <Link to={`/${display_id}/edit`}>Edit Event</Link>
+                <Link to="/edit-event">Edit Event</Link>
             </div>
 
         </li>

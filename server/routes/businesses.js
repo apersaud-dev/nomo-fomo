@@ -71,17 +71,17 @@ router
         .then((business) => {
             business
                 .save({
-                    name: req.body.name,
-                    address: req.body.address,
-                    city: req.body.city,
-                    province: req.body.province, 
-                    postal_code: req.body.postal_code,
-                    country: req.body.country,
-                    latitude: req.body.latitude,
-                    longitude: req.body.longitude
+                    name: req.body.updatedBusinessInfo.name,
+                    address: req.body.updatedBusinessInfo.address,
+                    city: req.body.updatedBusinessInfo.city,
+                    province: req.body.updatedBusinessInfo.province, 
+                    postal_code: req.body.updatedBusinessInfo.postal_code,
+                    country: req.body.updatedBusinessInfo.country,
+                    latitude: req.body.updatedBusinessInfo.latitude,
+                    longitude: req.body.updatedBusinessInfo.longitude
                 })
                 .then((updatedBusiness) => {
-                    console.log(req.body)
+                    // console.log(req.body)
                     res.status(200).json(updatedBusiness);
                 })
         })
