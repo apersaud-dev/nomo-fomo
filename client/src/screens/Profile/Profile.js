@@ -52,7 +52,11 @@ function Profile(props) {
                     <h3>{postal_code}</h3>
                     <h3>{country}</h3>
                 </div>
-                <Link to="/profile-edit">Edit Profile</Link>
+                <Link to={{
+                    pathname: "/profile-edit",
+                    state: {businessInfo}
+                }}
+                >Edit Profile</Link>
                 <hr></hr>
                 <EventList events={events} />
             </main>

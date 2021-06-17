@@ -9,7 +9,7 @@ function EventItems(props) {
     return (
         <li className="event">
             <div className="event__left">
-                <img src={image} alt="Event image" className="event__image"/>
+                <img src={image} alt="Event" className="event__image"/>
             </div>
             <div className="event__center">
                 <div className="event__box">
@@ -22,7 +22,7 @@ function EventItems(props) {
                 </div>
             </div>
             <div className="event__left">
-                <Link to={`/${display_id}/edit`}>Edit Event</Link>
+                <Link to={`/edit/${display_id}`} >Edit Event</Link>
             </div>
 
         </li>

@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-do
 import Home from './screens/Home';
 import Login from './screens/Login';
 import Profile from './screens/Profile';
+import EditProfile from './screens/EditProfile';
+import EditEvent from './screens/EditEvent';
 
 function App() {
   return (
@@ -12,9 +14,9 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
-          {/* <Route path="/profile-edit" component={EditProfile} */}
-          {/* <Route path="/:eventId/edit" component={EditEvent} />
-          <Route path="create-event" component={CreateEvent} /> */}
+          <Route path="/profile-edit" component={EditProfile} />
+          <Route path="/edit/:eventId" component={EditEvent} />
+          {/*<Route path="create-event" component={CreateEvent} /> */}
           {/* <Route path="/map" component={Map} /> */}
 
           <Route render={() => <Redirect to={{ pathname: "/"}} />} />
