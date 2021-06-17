@@ -2,13 +2,12 @@ import { Link } from 'react-router-dom';
 import './EventItems.scss';
 
 function EventItems(props) {
-    const { category, description, display_id, end_time, fee, id, image, name, restrictions, start_time } = props.eventData;
+    const { display_id, end_time, image, name, start_time } = props.eventData;
     const date = (new Date(start_time)).toDateString();
     const start = (new Date(start_time)).toLocaleTimeString();
     const end = (new Date(end_time)).toLocaleTimeString();
-    // console.log(eventData);
     return (
-        <li key={id} className="event">
+        <li className="event">
             <div className="event__left">
                 <img src={image} alt="Event image" className="event__image"/>
             </div>
@@ -23,7 +22,7 @@ function EventItems(props) {
                 </div>
             </div>
             <div className="event__left">
-                <Link to="/edit-event" eventData={props}>Edit Event</Link>
+                <Link to={`/${display_id}/edit`}>Edit Event</Link>
             </div>
 
         </li>
