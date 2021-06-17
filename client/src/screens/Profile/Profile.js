@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import EventList from './../../components/EventList';
 import './Profile.scss';
@@ -6,14 +7,12 @@ import './Profile.scss';
 function Profile(props) {
     const [businessInfo, setBusinessInfo] = useState(null);
 
-    
     // useEffect to make your API calls to your back-end
-
     useEffect(() => {
         axios
             .get('http://localhost:8080/business', { withCredentials: true})
             .then((res) => {
-                console.log(res.data[0]);
+                // console.log(res.data[0]);
                 setBusinessInfo(res.data[0])
             })
             .catch((err) => {
@@ -39,16 +38,22 @@ function Profile(props) {
             country, 
             events 
         } = businessInfo;
-        console.log(events);
+        // console.log(events);
         return (
             <main>
                 <h2>{name}</h2>
                 <h3>{email}</h3>
                 <h3>{address}</h3>
-                <h3>{city}</h3>
-                <h3>{province}</h3>
-                <h3>{postal_code}</h3>
-                <h3>{country}</h3>
+                <div className="" >
+                    <h3>{city}</h3>
+                    <h3>{province}</h3>
+                </div>
+                <div className="">
+                    <h3>{postal_code}</h3>
+                    <h3>{country}</h3>
+                </div>
+                <Link to="/profile-edit">Edit Profile</Link>
+                <hr></hr>
                 <EventList events={events} />
             </main>
         )
@@ -56,3 +61,9 @@ function Profile(props) {
 
 }
 export default Profile;
+
+// https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform#maps_places_autocomplete_addressform-javascript
+
+// https://bezkoder.com/node-js-upload-image-mysql/
+
+// https://pttrns.com/applications/676#8083

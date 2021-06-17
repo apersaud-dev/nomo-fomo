@@ -12,7 +12,10 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
-          {/* <Route path="/map" component={} /> */}
+          {/* <Route path="/profile-edit" component={EditProfile} */}
+          {/* <Route path="/:eventId/edit" component={EditEvent} />
+          <Route path="create-event" component={CreateEvent} /> */}
+          {/* <Route path="/map" component={Map} /> */}
 
           <Route render={() => <Redirect to={{ pathname: "/"}} />} />
         </Switch>

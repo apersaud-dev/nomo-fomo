@@ -2,7 +2,7 @@ import EventItems from './../EventItems';
 import './EventList.scss';
 
 function EventList(events) {
-    console.log(events);
+    // console.log(events.events);
     if(events.events.length === 0) {
         return (
             <section>
@@ -13,7 +13,11 @@ function EventList(events) {
         return (
             <section>
                 <ul>
-                    <EventItems />
+                    {events.events.map((event) => {
+                        return (
+                            <EventItems key={event.id} eventData={event} />
+                        )
+                    })}
                 </ul>
             </section>
         )

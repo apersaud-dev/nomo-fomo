@@ -1,0 +1,34 @@
+// @use './../../partials/abstracts/variables' as *;
+@use './../../partials/base/reset' as *;
+// @use './../../partials/base/typography' as *;
+
+.event {
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    &__left {
+        width: 25%;
+    }
+
+    &__center {
+        width: 75%;
+    }
+
+    &__box {
+        display: flex;
+    }
+
+    &__name {
+        margin-right: 2rem;
+    }
+
+    &__start {
+        margin-right: 2rem;
+    }
+
+    &__right {
+        width: 25%;
+    }
+}
