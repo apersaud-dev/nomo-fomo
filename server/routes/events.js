@@ -35,26 +35,28 @@ router
 
 // create a new event
 router
-    .route('/:businessId')
+    .route('/')
     .post(IsLoggedIn, (req, res) => {
-        const businessDisplayId = req.params.businessId;
+        const businessDisplayId = req.session.passport.user;
         Business.where({ display_id: businessDisplayId})
         .fetch()
         .then((business)=> {
+            // console.log(business)
             new Events({
                 display_id: uuidv4(),
                 business_id: business.id,
-                name: req.body.name,
-                start_time: req.body.start_time,
-                end_time: req.body.end_time,
-                description: req.body.description,
-                restrictions: req.body.restrictions,
-                fee: req.body.fee,
-                image: req.body.image,
-                category: req.body.category
+                name: req.body.event.name,
+                start_time: req.body.event.start_time,
+                end_time: req.body.event.end_time,
+                description: req.body.event.description,
+                restrictions: req.body.event.restrictions,
+                fee: req.body.event.fee,
+                image: req.body.event.image,
+                category: req.body.event.category
             })
             .save()
             .then((newEvent) => {
+
                 console.log(newEvent);
                 res.status(201).json(newEvent);
             })

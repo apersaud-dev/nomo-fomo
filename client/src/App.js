@@ -4,6 +4,7 @@ import Login from './screens/Login';
 import Profile from './screens/Profile';
 import EditProfile from './screens/EditProfile';
 import EditEvent from './screens/EditEvent';
+import CreateEvent from './screens/CreateEvent';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
           <Route path="/profile" component={Profile} />
           <Route path="/profile-edit" component={EditProfile} />
           <Route path="/edit/:eventId" component={EditEvent} />
-          {/*<Route path="create-event" component={CreateEvent} /> */}
+          <Route path="/create-event" component={CreateEvent} />
           {/* <Route path="/map" component={Map} /> */}
 
           <Route render={() => <Redirect to={{ pathname: "/"}} />} />

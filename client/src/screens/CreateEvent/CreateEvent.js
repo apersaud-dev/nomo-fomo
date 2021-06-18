@@ -1,25 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import date from 'date-and-time';
-import './EditEvent.scss';
+import './CreateEvent.scss';
 
+function CreateEvent(props) {
+    const [ eventInfo, setEventInfo ] = useState({
+        name: "",
+        start_time: "",
+        end_time: "",
+        description: "",
+        restrictions: "",
+        fee: 0.00,
+        category: ""
+    });
 
-function EditEvent(props) {
-    const [ eventInfo, setEventInfo ] = useState(null);
-    const eventId = props.match.params.eventId;
-    
-
-    useEffect(() => {
-        axios
-            .get(`http://localhost:8080/events/${eventId}`, { withCredentials: true })
-            .then((res) => {
-                setEventInfo(res.data)
-            })
-            .catch((err) => {
-                console.log(err.response);
-            })
-    }, [eventId])
+    const minTime = date.format(new Date(), 'YYYY-MM-DDTHH:mm')
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -29,22 +25,37 @@ function EditEvent(props) {
         })));
     };
 
+    const isFormValid = () => {
+        if (
+            !eventInfo.name.trim() ||
+            !eventInfo.start_time.trim() ||
+            !eventInfo.end_time.trim() ||
+            !eventInfo.category.trim()
+        ) {
+            return false;
+        } else if (eventInfo.start_time >= eventInfo.end_time) {
+            return false;
+        } 
+        return true;
+    }
+
     const handleFormSubmit = (e) => {
         e.preventDefault();
         const start = date.format((new Date(eventInfo.start_time)), 'YYYY-MM-DD HH:mm');
         const end = date.format((new Date(eventInfo.end_time)), 'YYYY-MM-DD HH:mm');
-        const updatedEvent = {
+        const event = {
             name: eventInfo.name,
             start_time: start,
             end_time: end,
             description: eventInfo.description,
             restrictions: eventInfo.restrictions,
             fee: eventInfo.fee,
-            image: eventInfo.image,
+            image: "",
             category: eventInfo.category
         }   
+        console.log(event);
         axios
-            .put(`http://localhost:8080/events/${eventId}`, {updatedEvent}, { withCredentials: true})
+            .post(`http://localhost:8080/events/`, {event}, { withCredentials: true})
             .then((res) => {
                 props.history.goBack();
             })
@@ -52,34 +63,12 @@ function EditEvent(props) {
                 console.log(err);
             })
     }
-
-    const handleDelete = (e) => {
-        axios
-            .delete(`http://localhost:8080/events/${eventId}`, { withCredentials: true})
-            .then((res)=> {
-                props.history.goBack();
-            })
-            .catch((err) => {
-                console.log(err.response)
-            });
-    };
-    
-    if(!eventInfo) {
-        return (
-            <main>
-                <p>Content is loading...</p>
-            </main>
-        )
-    } else {
-        const startTime = date.format((new Date(eventInfo.start_time)), 'YYYY-MM-DDTHH:mm');
-        const endTime = date.format((new Date(eventInfo.end_time)), 'YYYY-MM-DDTHH:mm');
-        
-        return (
-            <main>
-                <h2>dummy content for now</h2>
-                <form className="event-form" onSubmit={handleFormSubmit}>
-                    <div className="event-form__row">
-                        <label className="event-form__label" htmlFor="name">Name</label>
+    return (
+        <main>
+            <h1>dummy content</h1>
+            <form className="create-event" onSubmit={handleFormSubmit}>
+                    <div className="create-event__row">
+                        <label className="create-event__label" htmlFor="name">Name</label>
                         <input 
                             type="text" 
                             id="name" 
@@ -88,28 +77,29 @@ function EditEvent(props) {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="event-form__row">
-                        <label className="event-form__label" htmlFor="start_time">Start Time</label>
+                    <div className="create-event__row">
+                        <label className="create-event__label" htmlFor="start_time">Start Time</label>
                         <input 
                             type="datetime-local" 
                             id="start_time" 
                             name="start_time" 
-                            value={startTime} 
+                            min={minTime}
+                            value={eventInfo.start_time} 
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="event-form__row">
-                        <label className="event-form__label" htmlFor="end_time">End Time</label>
+                    <div className="create-event__row">
+                        <label className="create-event__label" htmlFor="end_time">End Time</label>
                         <input 
                             type="datetime-local" 
                             id="end_time" 
                             name="end_time" 
-                            value={endTime} 
+                            value={eventInfo.end_time} 
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="event-form__row">
-                        <label className="event-form__label" htmlFor="description">Description</label>
+                    <div className="create-event__row">
+                        <label className="create-event__label" htmlFor="description">Description</label>
                         <textarea 
                             id="description" 
                             name="description" 
@@ -117,9 +107,9 @@ function EditEvent(props) {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="event-form__row">
-                        <h4 className="event-form__label">Age Restrictions</h4>
-                        <label className="event-form__label" htmlFor="all_ages">All Ages</label>
+                    <div className="create-event__row">
+                        <h4 className="create-event__label">Age Restrictions</h4>
+                        <label className="create-event__label" htmlFor="all_ages">All Ages</label>
                         <input 
                             type="radio" 
                             id="all_ages" 
@@ -128,7 +118,7 @@ function EditEvent(props) {
                             checked={eventInfo.restrictions === ""} 
                             onChange={handleInputChange}
                         />
-                        <label className="event-form__label" htmlFor="restricted">19+</label>
+                        <label className="create-event__label" htmlFor="restricted">19+</label>
                         <input 
                             type="radio" 
                             id="restricted" 
@@ -138,8 +128,8 @@ function EditEvent(props) {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="event-form__row">
-                        <label className="event-form__label" htmlFor="fee">Admission Cost</label>
+                    <div className="create-event__row">
+                        <label className="create-event__label" htmlFor="fee">Admission Cost</label>
                         <input 
                             type="number" 
                             id="fee" 
@@ -151,8 +141,8 @@ function EditEvent(props) {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="event-form__row">
-                        <label className="event-form__label" htmlFor="category">Cateogry</label>
+                    <div className="create-event__row">
+                        <label className="create-event__label" htmlFor="category">Cateogry</label>
                         <select 
                             type="text" 
                             id="category" 
@@ -160,6 +150,7 @@ function EditEvent(props) {
                             value={eventInfo.category} 
                             onChange={handleInputChange}
                         >
+                            <option value="">Please Select</option>
                             <option value="Art">Art</option>
                             <option value="Entertainment">Entertainment</option>
                             <option value="Food & Drink">Food & Drink</option>
@@ -171,12 +162,15 @@ function EditEvent(props) {
                         </select>
                     </div>
                     <Link to="/profile">Cancel</Link>
-                    <button type="submit">Save Event</button>
+                    <button 
+                        type="submit"
+                        disabled={!isFormValid()}
+                    >
+                        Create Event
+                        </button>
                 </form>
-                <button type="button" onClick={handleDelete}>Delete</button>
-            </main>
-        )
-    }
+        </main>
+    )
 }
 
-export default EditEvent;
+export default CreateEvent;
