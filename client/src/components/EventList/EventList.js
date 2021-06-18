@@ -2,7 +2,6 @@ import EventItems from './../EventItems';
 import './EventList.scss';
 
 function EventList(events) {
-    // console.log(events.events);
     if(events.events.length === 0) {
         return (
             <section>
@@ -10,10 +9,15 @@ function EventList(events) {
             </section>
         )
     } else {
+        // sort events by start time before mapping over them
+        const sortedEvents = events.events.sort((a, b) => {
+            return (a.start_time < b.start_time) ? -1 : ((a.start_time > b.start_time) ? 1 : 0);
+        })
+        
         return (
             <section>
                 <ul>
-                    {events.events.map((event) => {
+                    {sortedEvents.map((event) => {
                         return (
                             <EventItems key={event.id} eventData={event} />
                         )

@@ -38,7 +38,6 @@ function Profile(props) {
             country, 
             events 
         } = businessInfo;
-        // console.log(events);
         return (
             <main>
                 <h2>{name}</h2>
@@ -52,12 +51,10 @@ function Profile(props) {
                     <h3>{postal_code}</h3>
                     <h3>{country}</h3>
                 </div>
-                <Link to={{
-                    pathname: "/profile-edit",
-                    state: {businessInfo}
-                }}
-                >Edit Profile</Link>
+                <Link to="/profile-edit">Edit Profile</Link>
+                <Link to="http://localhost:8080/logout">Logout</Link>
                 <hr></hr>
+                <Link to="/create-event">Create Event</Link>
                 <EventList events={events} />
             </main>
         )
