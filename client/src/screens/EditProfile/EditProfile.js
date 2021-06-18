@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './EditProfile.scss';
 
+// https://www.npmjs.com/package/react-places-autocomplete
+// https://www.youtube.com/watch?v=uJYqQdnw8LE
+
 function EditProfile(props) {
     const [businessInfo, setBusinessInfo] = useState(null);
 

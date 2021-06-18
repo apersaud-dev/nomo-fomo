@@ -29,3 +29,6 @@ function App() {
 }
 
 export default App;
+
+// Below post is about using .env variables in index.html
+// https://github.com/facebook/create-react-app/issues/6152
