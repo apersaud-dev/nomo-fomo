@@ -1,13 +1,20 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import PlacesAutoComplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import './EditProfile.scss';
 
 // https://www.npmjs.com/package/react-places-autocomplete
 // https://www.youtube.com/watch?v=uJYqQdnw8LE
+// https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingAddressTypes
 
 function EditProfile(props) {
     const [businessInfo, setBusinessInfo] = useState(null);
+    const [address, setAddress] = useState("");
+    const [coordinates, setCoordinates] = useState({
+        lat: null,
+        lng: null
+    })
 
     useEffect(() => {
         axios
@@ -15,10 +22,11 @@ function EditProfile(props) {
             .then((res) => {
                 console.log(res);
                 setBusinessInfo(res.data[0])
+                setAddress(res.data[0].address);
             })
             .catch((err) => {
                 console.log(err.response.data.message);
-            })
+            });
     }, [])
 
     const handleInputChange = (e) => {
@@ -53,6 +61,15 @@ function EditProfile(props) {
             })
     };
 
+    const handleSelect = async (value) => {
+        const results = await geocodeByAddress(value);
+        console.log(results);
+        const latLng = await getLatLng(results[0]);
+        setAddress(value);
+        setCoordinates(latLng);
+        console.log(latLng);
+    }
+
 
     if(!businessInfo) {
         return (
@@ -61,7 +78,6 @@ function EditProfile(props) {
             </main>
         )
     } else {
-        console.log(businessInfo.country);
         return (
             <main>
                 <h1>dummy content for now.</h1>
@@ -74,6 +90,24 @@ function EditProfile(props) {
                         <label className="form__label" htmlFor="email">Email Address</label>
                         <input type="email" id="email" name="email" value={businessInfo.email} onChange={handleInputChange}/>
                     </div>
+                    <PlacesAutoComplete value={address} onChange={setAddress} onSelect={handleSelect}>
+                        {({getInputProps, suggestions, getSuggestionItemProps, loading}) => {
+                            return (
+                                <div>
+                                    <input {...getInputProps({ placeholder: "Type address" })} />
+                                    <div>
+                                        {loading ? <div>...loading</div> : null }
+
+                                        {suggestions.map((suggestion) => {
+                                            const style = { backgroundColor : suggestion.active ? "#dd71fe" : "#fff"}
+
+                                            return <div {...getSuggestionItemProps(suggestion, { style })}>{suggestion.description}</div>
+                                        })}
+                                    </div>
+                                </div>
+                            )
+                        }}
+                    </PlacesAutoComplete>
                     <div className="form__row">
                         <label className="form__label" htmlFor="address">Address 1</label>
                         <input type="text" id="address" name="address" value={businessInfo.address} onChange={handleInputChange}/>
