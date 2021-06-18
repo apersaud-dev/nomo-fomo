@@ -9,14 +9,26 @@ const router = express.Router();
 router
     .route('/')
     .get((req, res) => {
-        Events.fetchAll({ withRelated: ['businesses'] })
+        Events.fetchAll({ withRelated: [{'businesses': function(qb) {
+            qb.column('id', 'latitude', 'longitude', 'name');
+            }}] 
+        })
         .then((events) => {
-            res.status(200).json(events);
+            const eventsArray = events.models;
+            const businessIdRemoved = [];
+            // delete business id from fetched object
+            for (let i=0; i< eventsArray.length; i++) {
+                delete eventsArray[i]['attributes']['business_id']
+                delete eventsArray[i]['relations']['businesses']['attributes']['id'];
+                businessIdRemoved.push(eventsArray[i]);
+            }
+            res.status(200).json(businessIdRemoved);
         })
         .catch(() => {
             res.status(400).json({ message: 'ERROR: cannot fetch events data' });
         });
     });
+
 
 // get a single event by 
 router
@@ -25,6 +37,8 @@ router
         Events.where({ display_id: req.params.eventId})
         .fetch()
         .then((event) => {
+            delete event.attributes['business_id'];
+            console.log(event);
             res.status(200).json(event);
         })
         .catch(() => {

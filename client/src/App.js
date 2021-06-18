@@ -5,6 +5,7 @@ import Profile from './screens/Profile';
 import EditProfile from './screens/EditProfile';
 import EditEvent from './screens/EditEvent';
 import CreateEvent from './screens/CreateEvent';
+import Map from './screens/Map';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           <Route path="/profile-edit" component={EditProfile} />
           <Route path="/edit/:eventId" component={EditEvent} />
           <Route path="/create-event" component={CreateEvent} />
-          {/* <Route path="/map" component={Map} /> */}
+          <Route path="/map" component={Map} />
 
           <Route render={() => <Redirect to={{ pathname: "/"}} />} />
         </Switch>
@@ -28,3 +29,6 @@ function App() {
 }
 
 export default App;
+
+// Below post is about using .env variables in index.html
+// https://github.com/facebook/create-react-app/issues/6152
