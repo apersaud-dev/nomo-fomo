@@ -16,9 +16,9 @@ router
         .then((events) => {
             const eventsArray = events.models;
             const businessIdRemoved = [];
-            
             // delete business id from fetched object
             for (let i=0; i< eventsArray.length; i++) {
+                delete eventsArray[i]['attributes']['business_id']
                 delete eventsArray[i]['relations']['businesses']['attributes']['id'];
                 businessIdRemoved.push(eventsArray[i]);
             }
@@ -37,6 +37,8 @@ router
         Events.where({ display_id: req.params.eventId})
         .fetch()
         .then((event) => {
+            delete event.attributes['business_id'];
+            console.log(event);
             res.status(200).json(event);
         })
         .catch(() => {

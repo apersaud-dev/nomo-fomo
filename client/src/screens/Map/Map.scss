@@ -1,1 +1,20 @@
 @use './../../partials/base/reset' as *;
+
+.cluster {
+    color: #fff;
+    padding: 1rem;
+    border-radius: 50%;
+    background: #6621fd;
+    box-shadow:  3px 3px 5px #571cd7, -3px -3px 5px #7526ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.map {
+    &__marker {
+        border-radius: 50%;
+        background: #f17efe;
+        box-shadow:  3px 3px 5px #cd6bd8, -3px -3px 5px #ff91ff;
+    }
+}
