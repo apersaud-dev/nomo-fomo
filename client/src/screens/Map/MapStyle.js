@@ -5,7 +5,22 @@ export default [
         "stylers": [
             {
                 "lightness": -100
-            },
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "labels.text",
+        "stylers": [
             {
                 "visibility": "simplified"
             },
@@ -19,16 +34,10 @@ export default [
         "elementType": "geometry",
         "stylers": [
             {
-                "hue": "#dddddd"
-            },
-            {
                 "saturation": -100
             },
             {
                 "lightness": -3
-            },
-            {
-                "visibility": "on"
             }
         ]
     },
@@ -37,7 +46,7 @@ export default [
         "elementType": "labels",
         "stylers": [
             {
-                "hue": "#000000"
+                "hue": "#ff0000"
             },
             {
                 "saturation": -100
@@ -55,7 +64,7 @@ export default [
         "elementType": "geometry.fill",
         "stylers": [
             {
-                "visibility": "on"
+                "visibility": "simplified"
             }
         ]
     },
@@ -64,19 +73,10 @@ export default [
         "elementType": "geometry.fill",
         "stylers": [
             {
-                "visibility": "on"
+                "color": "#e0e0e0"
             },
             {
-                "color": "#dad2d3"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape.natural.terrain",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#ab9a5f"
+                "visibility": "on"
             }
         ]
     },
@@ -133,6 +133,15 @@ export default [
     },
     {
         "featureType": "poi.medical",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.medical",
         "elementType": "labels",
         "stylers": [
             {
@@ -145,7 +154,7 @@ export default [
         "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#ddffd1"
+                "color": "#ebf5eb"
             },
             {
                 "visibility": "on"
@@ -187,7 +196,7 @@ export default [
         "elementType": "geometry",
         "stylers": [
             {
-                "hue": "#bbbbbb"
+                "hue": "#ff0000"
             },
             {
                 "saturation": -100
@@ -277,7 +286,7 @@ export default [
         "elementType": "labels",
         "stylers": [
             {
-                "hue": "#000000"
+                "hue": "#ff0000"
             },
             {
                 "lightness": -100
@@ -301,16 +310,10 @@ export default [
         "elementType": "geometry",
         "stylers": [
             {
-                "hue": "#ffffff"
-            },
-            {
                 "saturation": -100
             },
             {
                 "lightness": 100
-            },
-            {
-                "visibility": "on"
             }
         ]
     },
@@ -319,9 +322,6 @@ export default [
         "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#ccd3f3"
-            },
-            {
                 "visibility": "on"
             },
             {
@@ -329,6 +329,9 @@ export default [
             },
             {
                 "saturation": "100"
+            },
+            {
+                "color": "#eaecf5"
             }
         ]
     },

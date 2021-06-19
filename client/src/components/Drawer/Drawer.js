@@ -92,7 +92,7 @@ function ResponsiveDrawer(props) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
+        {/* <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -105,7 +105,7 @@ function ResponsiveDrawer(props) {
           <Typography variant="h6" noWrap>
             Responsive drawer
           </Typography>
-        </Toolbar>
+        </Toolbar> */}
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}

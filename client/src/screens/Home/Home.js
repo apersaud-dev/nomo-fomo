@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
+import Logo from './../../assets/Images/nomo-fomo.svg';
 import './Home.scss';
 
 function Home() {
     return (
-        <main>
-            <img src="" alt="NOMO FOMO logo"/>
-            <h1>Filler content for now</h1>
-            <Link to="/map" >Get Started</Link>
+        <main className="home">
+            <img src={Logo} alt="NOMO FOMO logo" className="home__logo"/>
+            <h1 className="home__slogan" >Filler content for now</h1>
+            <Link to="/map" className="home__button" >Get Started</Link>
             <hr />
             <p>or</p>
             <hr />
