@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import EventsHeader from './../../components/EventsHeader';
 import EventList from './../../components/EventList';
 import './Profile.scss';
 
@@ -40,7 +41,7 @@ function Profile(props) {
             events 
         } = businessInfo;
         return (
-            <main>
+            <main className="profile">
                 <h2>{name}</h2>
                 <h3>{email}</h3>
                 <h3>{address}</h3>
@@ -56,8 +57,10 @@ function Profile(props) {
                 <Link to="/profile-edit">Edit Profile</Link>
                 <Link to="http://localhost:8080/logout">Logout</Link>
                 <hr></hr>
-                <Link to="/create-event">Create Event</Link>
-                <EventList events={events} />
+                <div className="profile__events-container">
+                    <EventsHeader />
+                    <EventList events={events} />
+                </div>
             </main>
         )
     }

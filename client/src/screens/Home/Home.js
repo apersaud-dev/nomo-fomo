@@ -17,5 +17,3 @@ function Home() {
 }
 
 export default Home;
-
-// <a href="http://localhost:8080/auth/google">Business Login</a>
