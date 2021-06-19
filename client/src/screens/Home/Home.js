@@ -5,14 +5,13 @@ import './Home.scss';
 function Home() {
     return (
         <main className="home">
-            <img src={Logo} alt="NOMO FOMO logo" className="home__logo"/>
-            <h1 className="home__slogan" >Filler content for now</h1>
-            <Link to="/map" className="home__button" >Get Started</Link>
-            <hr />
-            <p>or</p>
-            <hr />
-            <Link to="/login">Business User Login</Link>
-            
+            <div className="home__container">
+                <img src={Logo} alt="NOMO FOMO logo" className="home__logo"/>
+                <h1 className="home__slogan" >Switch off your FOMO</h1>
+                <Link to="/map" className="home__button" >Get Started</Link>
+                <p className="home__info">Are you a business? Login below</p>
+                <a href="http://localhost:8080/auth/google" className="home__button">Login Now</a>
+            </div>
         </main>
     )
 }

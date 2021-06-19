@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react';
 import axios from 'axios';
 import useSuperCluster from 'use-supercluster';
 import MapStyle from './MapStyle';
-import Icon from './../../assets/Images/arrow_drop_down-24px.svg';
+// import Icon from './../../assets/Images/arrow_drop_down-24px.svg';
 import ResponsiveDrawer from './../../components/Drawer';
 import './Map.scss';
 
