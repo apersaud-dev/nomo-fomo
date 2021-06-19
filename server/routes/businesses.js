@@ -66,6 +66,7 @@ router
 router
     .route('/:businessId')
     .put(IsLoggedIn, (req, res) => {
+        console.log(req.body.updatedBusinessInfo);
         Business.where({ display_id: req.params.businessId})
         .fetch()
         .then((business) => {
@@ -73,6 +74,7 @@ router
                 .save({
                     name: req.body.updatedBusinessInfo.name,
                     address: req.body.updatedBusinessInfo.address,
+                    address_two: req.body.updatedBusinessInfo.address_two,
                     city: req.body.updatedBusinessInfo.city,
                     province: req.body.updatedBusinessInfo.province, 
                     postal_code: req.body.updatedBusinessInfo.postal_code,

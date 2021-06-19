@@ -31,7 +31,8 @@ function Profile(props) {
         const { 
             name, 
             email, 
-            address, 
+            address,
+            address_two, 
             city, 
             province, 
             postal_code, 
@@ -43,6 +44,7 @@ function Profile(props) {
                 <h2>{name}</h2>
                 <h3>{email}</h3>
                 <h3>{address}</h3>
+                <h3>{address_two}</h3>
                 <div className="" >
                     <h3>{city}</h3>
                     <h3>{province}</h3>
