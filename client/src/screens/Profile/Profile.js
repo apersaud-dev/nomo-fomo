@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Header from './../../components/Header';
 import EventsHeader from './../../components/EventsHeader';
 import EventList from './../../components/EventList';
 import './Profile.scss';
@@ -41,27 +42,31 @@ function Profile(props) {
             events 
         } = businessInfo;
         return (
-            <main className="profile">
-                <h2>{name}</h2>
-                <h3>{email}</h3>
-                <h3>{address}</h3>
-                <h3>{address_two}</h3>
-                <div className="" >
-                    <h3>{city}</h3>
-                    <h3>{province}</h3>
-                </div>
-                <div className="">
-                    <h3>{postal_code}</h3>
-                    <h3>{country}</h3>
-                </div>
-                <Link to="/profile-edit">Edit Profile</Link>
-                <Link to="http://localhost:8080/logout">Logout</Link>
-                <hr></hr>
-                <div className="profile__events-container">
-                    <EventsHeader />
-                    <EventList events={events} />
-                </div>
-            </main>
+            <div>
+                <Header {...props}/>
+                <main className="profile">
+                    {/* <div className="profile__card">
+                        <h2>{name}</h2>
+                        <h3>{email}</h3>
+                        <h3>{address}</h3>
+                        <h3>{address_two}</h3>
+                        <div className="" >
+                            <h3>{city}</h3>
+                            <h3>{province}</h3>
+                        </div>
+                        <div className="">
+                            <h3>{postal_code}</h3>
+                            <h3>{country}</h3>
+                        </div>
+                    </div> */}
+                    {/* <Link to="/profile-edit">Edit Profile</Link>
+                    <Link to="http://localhost:8080/logout">Logout</Link> */}
+                    <div className="profile__events-container">
+                        <EventsHeader />
+                        <EventList events={events} />
+                    </div>
+                </main>
+            </div>
         )
     }
 

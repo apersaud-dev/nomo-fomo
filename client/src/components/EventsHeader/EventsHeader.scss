@@ -47,8 +47,10 @@
     &__headings{
         width: 100%;
         display: flex;
+        padding-left: 0.5rem;
         padding-bottom: 0.5rem;
         border-bottom: 2px solid $bg-colour;
+        
     }
 
     &__label {

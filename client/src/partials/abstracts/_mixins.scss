@@ -1,0 +1,25 @@
+@use './variables' as *;
+@use './../base/typography' as *;
+
+@mixin button {
+    color: #F3EFF5;
+    // font: $h4-font;
+    text-align: center;
+    text-decoration: none;
+    // border-image: linear-gradient(90deg, rgba(102,33,253,1) 0%, rgba(122,46,253,1) 16%, rgba(142,60,253,1) 32%, rgba(181,86,254,1) 48%, rgba(201,99,254,1) 64%, rgba(221,113,254,1) 80%, rgba(241,126,254,1) 100%) 1;         
+    // border-width: 3px;
+    // border-style: solid;
+    // background: $bg-colour;
+    // box-shadow:  3px 3px 7px #150031,-3px -3px 7px #2b0063;
+    background: linear-gradient(145deg, #22004f, #1d0043);
+    box-shadow:  3px 3px 4px #110026, -3px -3px 4px #2f006e;
+    border-radius: 20px;
+    padding: 0.75rem 2.5rem;
+    // margin: 1rem 0;
+    width: 186px;   
+    
+    &:hover {
+        background: #20004a;
+        box-shadow: inset 6px 6px 7px #110026, inset -6px -6px 7px #2f006e;
+    }
+}

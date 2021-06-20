@@ -5,9 +5,9 @@
 .event {
     font: $p-font;
     color: #6A00F5;
-    padding: 0.5rem 0;
+    padding: 0.5rem;
     border-radius: 14px;
-    margin: 1rem 0;
+    margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
     width: 100%;
@@ -39,12 +39,20 @@
     }
 
     &__edit {
-        justify-self: end;
-        // width: 7%;
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
+        width: 7%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__edit-box {
+        width: 2rem;;
+        height: 2rem;
         border-radius: 4px;
+        margin-right: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
         transition: all 0.3s linear;
 
         &:hover {
@@ -54,7 +62,6 @@
                 fill: $white;
             }
         }
-
     }
 
     &__edit-icon {

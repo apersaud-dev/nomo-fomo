@@ -1,0 +1,40 @@
+@use './../../partials/base/reset' as *;
+@use './../../partials/base/typography' as *;
+@use './../../partials/abstracts/variables' as *;
+@use './../../partials/abstracts/mixins' as *;
+
+.header {
+    background: $bg-colour;
+    padding: 1rem;
+    padding-bottom: 2rem;
+
+    &__container {
+        padding: 2rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 20px;
+        background: linear-gradient(145deg, #22004f, #1d0043);
+        box-shadow:  3px 3px 5px #0d001e,
+             -3px -3px 5px #330076;
+    }
+    &__logo {
+        max-width: 200px;
+    }
+
+    &__nav {
+        width: 35%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__link {
+        @include button;
+        font: $h5-font;
+        width: 150px;
+        margin-left: 1rem; 
+        background: linear-gradient(145deg, #22004f, #1d0043);
+        box-shadow:  3px 3px 5px #0d001e,
+             -3px -3px 5px #330076;
+    }
+}
