@@ -1,19 +1,91 @@
 @use './variables' as *;
 @use './../base/typography' as *;
 
+@mixin headline1 {
+  font: $headline1;
+  letter-spacing: -1.5px;
+}
+
+@mixin headline2 {
+  font: $headline2;
+  letter-spacing: -0.5px;
+}
+
+@mixin headline3 {
+  font: $headline3;
+  letter-spacing: 0px;
+}
+
+@mixin headline4 {
+  font: $headline4;
+  letter-spacing: 0.25px;
+}
+
+@mixin headline5 {
+  font: $headline5;
+  letter-spacing: 0px;
+}
+
+@mixin headline6 {
+  font: $headline6;
+  letter-spacing: 0.15px;
+}
+
+@mixin subtitle1 {
+  font: $subtitle1;
+  letter-spacing: 0.15px;
+}
+
+@mixin subtitle2 {
+  font: $subtitle2;
+  letter-spacing: 0.1px;
+}
+
+@mixin body1 {
+  font: $body1;
+  letter-spacing: 0.5px;
+}
+
+@mixin body2 {
+  font: $body2;
+  letter-spacing: 0.25px;
+}
+
+@mixin button-font {
+  font: $button-font;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
+
+@mixin caption {
+  font: $caption-font;
+  letter-spacing: 0.4px;
+}
+
+@mixin overline {
+  font: $overline-font;
+  letter-spacing: 1.5px;
+}
+
+
+
+
+
+
 @mixin button {
-  color: $white;
+  @include button-font;
+  color: $light-grey;
   text-align: center;
   text-decoration: none;
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 1.5rem;
   border-radius: 20px;
   background: #340078;
   box-shadow:  5px 5px 10px #150030, -5px -5px 10px #5300c0;
   border: none;
  
     &:hover {
-      background: #340078;
-      box-shadow: inset 5px 5px 10px #150030, inset -5px -5px 10px #5300c0;
+      background: #242424;
+      box-shadow: inset 7px 7px 14px #0e0e0e, inset -7px -7px 14px #3a3a3a;
     }
 }
 

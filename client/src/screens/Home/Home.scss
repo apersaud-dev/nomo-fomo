@@ -4,7 +4,7 @@
 @use './../../partials/abstracts/mixins' as *;
 
 .home {
-    background-color: $bg-colour;
+    background-color: $dark;
     color: $white;
     padding: 2rem 1rem;
     height: 100vh;
@@ -15,11 +15,9 @@
     &__container {
         width: 500px;
         border-radius: 13%;
-        // box-shadow:  8px 8px 18px #0d001e, -8px -8px 18px #330076;
-        // background: linear-gradient(145deg, #1d0043, #22004f);
-        // box-shadow:  10px 10px 20px #180038, -10px -10px 20px #28005c;
-        background: #340078;
-        box-shadow:  5px 5px 10px #150030, -5px -5px 10px #5300c0;
+        background: linear-gradient(145deg, #272727, #202020);
+        background: $dark;
+        box-shadow:  13px 13px 26px #141414, -13px -13px 26px #343434;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -33,7 +31,7 @@
 
     &__slogan {
         margin: 1rem 0;
-        font: $h2-font;
+        @include headline5;
     }
 
     &__info {
@@ -64,23 +62,26 @@
     }
 
     &__button {
-        font: $h4-font;
-        font-weight: 600;
         @include button;
-        // color: $white;
-        // text-align: center;
-        // text-decoration: none;
-        // padding: 0.75rem 1.5rem;
-        // border-radius: 20px;
-        // background: #340078;
-        // box-shadow:  5px 5px 10px #150030, -5px -5px 10px #5300c0;
-
-        margin: 1rem 0;
-        width: 186px;   
-        
+        width: 252px;
+        border-radius: 10px;
+         margin: 1rem 0;
+        background: linear-gradient(145deg, #202020, #272727);
+        box-shadow:  7px 7px 14px #141414, -7px -7px 14px #343434;
         // &:hover {
             // background: #20004a;
             // box-shadow: inset 6px 6px 7px #110026, inset -6px -6px 7px #2f006e;
         // }
+
+        &--secondary {
+            background: linear-gradient(90deg, rgba(102,33,253,1) 0%, rgba(122,46,253,1) 16%, rgba(142,60,253,1) 32%, rgba(181,86,254,1) 50%, rgba(201,99,254,1) 68%, rgba(221,113,254,1) 84%, rgba(241,126,254,1) 100%);
+            border: 1px solid $mid-colour;
+            
+            &:hover {
+                background: linear-gradient(90deg, rgba(102,33,253,1) 0%, rgba(122,46,253,1) 16%, rgba(142,60,253,1) 32%, rgba(181,86,254,1) 50%, rgba(201,99,254,1) 68%, rgba(221,113,254,1) 84%, rgba(241,126,254,1) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
     }
 }

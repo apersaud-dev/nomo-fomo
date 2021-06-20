@@ -6,7 +6,9 @@ function Header(props) {
     return(
         <header className="header">
             <div className="header__container">
-                <img src={LinearLogo} alt="NOMO FOMO logo" className="header__logo" />
+                <Link to="/" className="header__link--home">
+                    <img src={LinearLogo} alt="NOMO FOMO logo" className="header__logo" />
+                </Link>
                 <div className="header__nav">
                     <Link 
                         to="/profile"
