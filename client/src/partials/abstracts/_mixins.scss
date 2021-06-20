@@ -73,6 +73,67 @@
   box-shadow:  13px 13px 26px #141414, -13px -13px 26px #343434;
 }
 
+@mixin card {
+  background: $dark;
+  box-shadow:  6px 6px 12px #141414, -6px -6px 12px #343434;
+  width: 600px;
+  padding: 1rem;
+  border-radius: 60px;
+  border: 1px solid rgba(7, 7, 7, 0.05);
+  margin: 1rem auto;
+  display: flex;
+  justify-content: center;  
+}
+
+@mixin form {
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin form-wrapper {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+@mixin form-box {
+  display: flex;
+  align-items: center;
+  width: 40%;
+  margin-top: 0.5rem;
+}
+
+@mixin form-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+@mixin form-label {
+  @include overline;
+  color: $white;
+  margin-bottom: 0.25rem;
+}
+
+@mixin input {
+  @include body1;
+  color: $white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  background: #242424;
+  box-shadow: inset 4px 4px 8px #0e0e0e, inset -4px -4px 8px #3a3a3a;
+  border: 1px solid rgba(245, 240 ,246, 0.05);
+}
+
+@mixin form-actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 @mixin button {
   @include button-font;
   color: $light-grey;
@@ -89,6 +150,27 @@
     background: #242424;
     box-shadow: inset 4px 4px 8px #0e0e0e, inset -4px -4px 8px #3a3a3a;
   }
+}
+
+@mixin form-button {
+  @include button;
+  margin-left: 1.5rem;
+
+  &:disabled {
+    box-shadow: none;
+    opacity: 0.3;
+
+    &:hover {
+        box-shadow: inset 7px 7px 14px #0e0e0e, inset -7px -7px 14px #3a3a3a;
+    }
+  }
+}
+
+@mixin button-cancel {
+  @include button;
+  background: $dark;
+  border: 1px solid rgba(7, 7, 7, 0.3);
+  box-shadow: none;
 }
 
 
@@ -110,8 +192,8 @@
   
   &:hover {
       background: linear-gradient(90deg, rgba(102,33,253,1) 0%, rgba(122,46,253,1) 16%, rgba(142,60,253,1) 32%, rgba(181,86,254,1) 50%, rgba(201,99,254,1) 68%, rgba(221,113,254,1) 84%, rgba(241,126,254,1) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
   }
 }
 

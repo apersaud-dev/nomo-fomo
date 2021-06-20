@@ -3,15 +3,7 @@
 @use './../../partials/abstracts/mixins' as *;
 
 .create-event {
-    background: $dark;
-    box-shadow:  6px 6px 12px #141414, -6px -6px 12px #343434;
-    width: 600px;
-    border-radius: 10px;
-    border: 1px solid rgba(7, 7, 7, 0.05);
-    padding: 1rem;
-    margin: 1rem auto;
-    display: flex;
-    justify-content: center;    
+    @include card;
    
     &__title {
         @include headline3;
@@ -21,15 +13,10 @@
 }
 
 .create-event-form {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include form;
 
     &__row {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
+        @include form-row;
 
         &--short {
             flex-direction: row;
@@ -38,21 +25,15 @@
     }
 
     &__wrapper {
-        display: flex;
-        margin-bottom: 1.5rem;
+        @include form-wrapper;
     }
 
     &__box {
-        display: flex;
-        align-items: center;
-        width: 40%;
-        margin-top: 0.5rem;
+        @include form-box;
     }
 
     &__label {
-        color: $white;
-        @include overline;
-        margin-bottom: 0.25rem;
+        @include form-label;
 
         &--radio {
             @include body2;
@@ -61,14 +42,7 @@
     }
 
     &__input {
-        @include body1;
-        color: $white;
-        padding: 0.5rem 1rem;
-        border-radius: 10px;
-        margin-bottom: 1.5rem;
-        background: #242424;
-        box-shadow: inset 4px 4px 8px #0e0e0e, inset -4px -4px 8px #3a3a3a;
-        border: 1px solid rgba(245, 240 ,246, 0.05);
+        @include input;
 
         &--textarea {
             min-height: 6rem;
@@ -81,36 +55,15 @@
         }
     }
 
-    &__suggestions {
-        font: $p-font;
-        background-color: $white;
-        color: $bg-colour;
-    }
-
     &__actions {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
+        @include form-actions;
     }
 
     &__button {
-        @include button;
-        margin-left: 1.5rem;
-   
-        &:disabled {
-            box-shadow: none;
-            opacity: 0.3;
-
-            &:hover {
-                box-shadow: inset 7px 7px 14px #0e0e0e, inset -7px -7px 14px #3a3a3a;
-            }
-        }
+        @include form-button;
 
         &--cancel {
-            @include button;
-            background: $dark;
-            border: 1px solid rgba(7, 7, 7, 0.3);
-            box-shadow: none;
+            @include button-cancel;
         }
     }
 }

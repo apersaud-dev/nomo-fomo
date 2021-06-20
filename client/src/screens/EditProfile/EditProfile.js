@@ -5,10 +5,6 @@ import Header from './../../components/Header';
 import PlacesAutoComplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import './EditProfile.scss';
 
-// https://www.npmjs.com/package/react-places-autocomplete
-// https://www.youtube.com/watch?v=uJYqQdnw8LE
-// https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingAddressTypes
-
 function EditProfile(props) {
     const [businessInfo, setBusinessInfo] = useState(null);
     const [address, setAddress] = useState("");
@@ -130,9 +126,9 @@ function EditProfile(props) {
         )
     } else {
         return (
-            <div className="edit-profile">
+            <div>
                 <Header {...props}/>
-                <main className="edit-profile__container">
+                <main className="edit-profile">
                     <form className="profile-form" onSubmit={handleFormSubmit}>
                         <h1 className="edit-profile__title">Edit Your Profile</h1>
                         <div className="profile-form__row">
@@ -150,6 +146,7 @@ function EditProfile(props) {
                             value={address} 
                             onChange={setAddress} 
                             onSelect={handleSelect}
+                            // styles={myStyles}
                         >
                             {({getInputProps, suggestions, getSuggestionItemProps, loading}) => {
                                 return (
@@ -166,8 +163,12 @@ function EditProfile(props) {
 
                                             {suggestions.map((suggestion) => {
                                                 const style = { 
-                                                    backgroundColor : suggestion.active ? "#b556fe" : "#f3eff5", 
-                                                    color: suggestion.active ? "f3eff5" : "20004a" 
+                                                    color: suggestion.active ? "#F17EFE" : "#f3eff5",
+                                                    border: suggestion.active? "1px solid rgba(7, 7, 7, 0.3)" : "none",
+                                                    borderRadius: "10px",
+                                                    padding: suggestion.active? "4px 16px": "4px 8px",
+                                                    marginBottom: "4px",
+                                                    boxShadow: suggestion.active ? "inset 5px 5px 10px #0e0e0e, inset -5px -5px 10px #3a3a3a" : "none"
                                                 }
 
                                                 return <div {...getSuggestionItemProps(suggestion, {style})} className="profile-form__suggestions">{suggestion.description}</div>

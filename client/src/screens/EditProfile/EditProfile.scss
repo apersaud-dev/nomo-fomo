@@ -1,24 +1,10 @@
-@use './../../partials/base/reset' as *;
 @use './../../partials/base/typography' as *;
 @use './../../partials/abstracts/variables' as *;
 @use './../../partials/abstracts/mixins' as *;
 
 .edit-profile {
-    background: $bg-colour;
-    padding-bottom: 3rem;
-
-    &__container {
-        width: 600px;
-        border-radius: 65px;
-        margin: 1rem auto;
-        // background: linear-gradient(145deg, #22004f, #1d0043);
-        // box-shadow:  3px 3px 5px #0d001e, -3px -3px 5px #330076;
-        background: #340078;
-        box-shadow:  5px 5px 10px #150030, -5px -5px 10px #5300c0;
-        display: flex;
-        justify-content: center;
-    }
-
+    @include card;
+    
     &__title {
         font: $h1-font;
         font-weight: 500;
@@ -28,16 +14,10 @@
 }
 
 .profile-form {
-    padding: 2rem;
-    width: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include form;
 
     &__row {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
+        @include form-row;
 
         &--short {
             flex-direction: row;
@@ -51,47 +31,22 @@
     }
 
     &__label {
-        color: $white;
-        font: $h5-font;
-        margin-bottom: 0.25rem;
+        @include form-label;
     }
 
     &__input {
-        font: $p-font;
-        color: $white;
-        padding: 0.5rem 1rem;
-        border-radius: 10px;
-        margin-bottom: 1.5rem;
-        // background: #20004a;
-        // box-shadow: inset 4px 4px 7px #100024, inset -4px -4px 7px #300070;
-        background: #340078;
-        box-shadow: inset 5px 5px 10px #150030, inset -5px -5px 10px #5300c0;
-        border: none;
+        @include input;
     }
 
     &__suggestions {
-        font: $p-font;
-        background-color: $white;
-        color: $bg-colour;
+        @include body2;    
     }
 
     &__actions {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
+        @include form-actions;
     }
 
     &__button {
-        font: $h4-font;
-        color:  $white;
-        padding: 0.5rem 1rem;
-        margin-left: 1.5rem;
-        border: none;
-        border-radius: 10px;
-        // background: linear-gradient(145deg, #22004f, #1d0043);
-        // box-shadow:  5px 5px 10px #0d001e, -5px -5px 10px #330076;
-        background: linear-gradient(145deg, #380080, #2f006c);
-        box-shadow:  3px 3px 6px #150030, -3px -3px 6px #5300c0;
-        
+        @include form-button;
     }
 }
