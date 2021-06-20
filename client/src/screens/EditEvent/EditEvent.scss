@@ -14,6 +14,7 @@
 
 .edit-event-form {
     @include form;
+    position: relative;
 
     &__row {
         @include form-row;
@@ -57,6 +58,32 @@
 
     &__actions {
         @include form-actions;
+    }
+
+    &__delete {
+        margin-right: 10.3rem;
+        background: $dark;
+        border-radius: 10px;
+        border: 1px solid rgba(7, 7, 7, 0.3);
+        width: 52px;
+        cursor: pointer;
+
+        &:hover {
+            background: $dark;
+            box-shadow: inset 7px 7px 14px #0e0e0e, inset -7px -7px 14px #3a3a3a;
+
+            .edit-event-form__icon {
+                fill: red;
+            }
+          }
+    }
+
+    &__svg {
+        height: 24px;
+    }
+
+    &__icon {
+        fill: $white;
     }
 
     &__button {

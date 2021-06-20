@@ -145,6 +145,7 @@
   border-radius: 10px;
   background: linear-gradient(145deg, #202020, #272727);
   box-shadow:  4px 4px 8px #0e0e0e, -4px -4px 8px #3a3a3a;
+  cursor: pointer;
 
   &:hover {
     background: #242424;
@@ -194,6 +195,20 @@
       background: linear-gradient(90deg, rgba(102,33,253,1) 0%, rgba(122,46,253,1) 16%, rgba(142,60,253,1) 32%, rgba(181,86,254,1) 50%, rgba(201,99,254,1) 68%, rgba(221,113,254,1) 84%, rgba(241,126,254,1) 100%);
       background-clip: text;
       color: transparent;
+  }
+}
+
+@keyframes spin {
+  from {
+  transform: rotateY(0deg);
+  color: $white;
+  }
+  
+  to {
+  transform: rotateY(180deg);
+  background: linear-gradient(90deg, rgba(102,33,253,1) 0%, rgba(122,46,253,1) 16%, rgba(142,60,253,1) 32%, rgba(181,86,254,1) 50%, rgba(201,99,254,1) 68%, rgba(221,113,254,1) 84%, rgba(241,126,254,1) 100%);
+  background-clip: text;
+  color: transparent;
   }
 }
 

@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import date from 'date-and-time';
 import Header from './../../components/Header';
+import Modal from './../../components/Modal';
 import './EditEvent.scss';
 
 
 function EditEvent(props) {
     const [ eventInfo, setEventInfo ] = useState(null);
+    const [ modalStatus, setModalStatus] = useState(false);
     const eventId = props.match.params.eventId;
     
 
@@ -68,16 +70,12 @@ function EditEvent(props) {
             })
     }
 
-    const handleDelete = (e) => {
-        axios
-            .delete(`http://localhost:8080/events/${eventId}`, { withCredentials: true})
-            .then((res)=> {
-                props.history.goBack();
-            })
-            .catch((err) => {
-                console.log(err.response)
-            });
-    };
+    const toggleModal = (e) => {
+        e.preventDefault();
+        setModalStatus(!modalStatus);
+    }
+
+  
     
     if(!eventInfo) {
         return (
@@ -202,6 +200,11 @@ function EditEvent(props) {
                             </select>
                         </div>
                         <div className="edit-event-form__actions">
+                            <button className="edit-event-form__delete" onClick={toggleModal}>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="edit-event-form__svg">
+                                    <path d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM8 9H16V19H8V9ZM15.5 4L14.5 3H9.5L8.5 4H5V6H19V4H15.5Z" fill="#C94515" className="edit-event-form__icon"/>
+                                </svg>
+                            </button>
                             <Link to="/profile" className="edit-event-form__button edit-event-form__button--cancel">Cancel</Link>
                             <button 
                                 type="submit" 
@@ -209,10 +212,10 @@ function EditEvent(props) {
                                 disabled={!isFormValid()}
                                 >
                                     Save Event
-                                </button>
+                            </button>
                         </div>
                     </form>
-                    {/* <button type="button" onClick={handleDelete}>Delete</button> */}
+                    {modalStatus ? <Modal {...props} modalStatus={modalStatus} setModalStatus={setModalStatus}/> : null}
                 </main>
             </div>
         )
