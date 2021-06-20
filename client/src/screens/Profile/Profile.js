@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Header from './../../components/Header';
 import EventsHeader from './../../components/EventsHeader';
@@ -31,14 +31,14 @@ function Profile(props) {
         )
     } else {
         const { 
-            name, 
-            email, 
-            address,
-            address_two, 
-            city, 
-            province, 
-            postal_code, 
-            country, 
+            // name, 
+            // email, 
+            // address,
+            // address_two, 
+            // city, 
+            // province, 
+            // postal_code, 
+            // country, 
             events 
         } = businessInfo;
         return (

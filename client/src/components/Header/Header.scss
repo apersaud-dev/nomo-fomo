@@ -14,27 +14,27 @@
         align-items: center;
         justify-content: space-between;
         border-radius: 20px;
-        background: linear-gradient(145deg, #22004f, #1d0043);
-        box-shadow:  3px 3px 5px #0d001e,
-             -3px -3px 5px #330076;
+        background: #340078;
+        box-shadow:  5px 5px 10px #150030, -5px -5px 10px #5300c0;
     }
     &__logo {
         max-width: 200px;
     }
 
     &__nav {
-        width: 35%;
         display: flex;
         justify-content: flex-end;
     }
 
     &__link {
+        font: $p-font;
+        font-weight: 600;
+        margin-left: 1.5rem; 
         @include button;
-        font: $h5-font;
-        width: 150px;
-        margin-left: 1rem; 
-        background: linear-gradient(145deg, #22004f, #1d0043);
-        box-shadow:  3px 3px 5px #0d001e,
-             -3px -3px 5px #330076;
+
+        &--active {
+            background: #340078;
+            box-shadow: inset 5px 5px 10px #150030, inset -5px -5px 10px #5300c0;
+        }
     }
 }

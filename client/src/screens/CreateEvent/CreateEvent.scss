@@ -1,0 +1,108 @@
+@use './../../partials/base/reset' as *;
+@use './../../partials/base/typography' as *;
+@use './../../partials/abstracts/variables' as *;
+@use './../../partials/abstracts/mixins' as *;
+
+.create-event {
+    background: $bg-colour;
+    padding-bottom: 3rem;
+
+    &__container {
+        width: 600px;
+        border-radius: 65px;
+        margin: 1rem auto;
+        background: #340078;
+        box-shadow:  5px 5px 10px #150030, -5px -5px 10px #5300c0;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__title {
+        font: $h1-font;
+        font-weight: 500;
+        color: $white;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.event-form {
+    padding: 2rem;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__row {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        &--short {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        margin-bottom: 1.5rem;
+    }
+
+    &__box {
+        display: flex;
+        align-items: center;
+        width: 40%;
+        margin-top: 0.5rem;
+    }
+
+    &__label {
+        color: $white;
+        font: $h5-font;
+        margin-bottom: 0.25rem;
+    }
+
+    &__input {
+        font: $p-font;
+        color: $white;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+        background: #340078;
+        box-shadow: inset 5px 5px 10px #150030, inset -5px -5px 10px #5300c0;
+        border: none;
+
+        &--textarea {
+            min-height: 6rem;
+        }
+
+        &--radio {
+            margin: 0 0 0.25rem 0.5rem;
+            background: $white;
+            box-shadow: none;
+        }
+    }
+
+    &__suggestions {
+        font: $p-font;
+        background-color: $white;
+        color: $bg-colour;
+    }
+
+    &__actions {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__button {
+        font: $h4-font;
+        margin-left: 1.5rem;
+        @include button;
+   
+        &:disabled {
+            background: #340078;
+            box-shadow: none;
+            opacity: 0.8;
+        }
+    }
+}
