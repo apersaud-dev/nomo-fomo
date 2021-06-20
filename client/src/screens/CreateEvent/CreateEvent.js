@@ -65,15 +65,15 @@ function CreateEvent(props) {
             })
     }
     return (
-        <div className="create-event">
+        <div>
             <Header {...props} />
-             <main className="create-event__container">
-                <form className="event-form" onSubmit={handleFormSubmit}>
+             <main className="create-event">
+                <form className="create-event-form" onSubmit={handleFormSubmit}>
                     <h1 className="create-event__title">Create A New Event</h1>
-                        <div className="event-form__row">
-                            <label className="event-form__label" htmlFor="name">Name</label>
+                        <div className="create-event-form__row">
+                            <label className="create-event-form__label" htmlFor="name">Name*</label>
                             <input 
-                                className="event-form__input"
+                                className="create-event-form__input"
                                 type="text" 
                                 id="name" 
                                 name="name" 
@@ -81,10 +81,10 @@ function CreateEvent(props) {
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className="event-form__row">
-                            <label className="event-form__label" htmlFor="start_time">Start Time</label>
+                        <div className="create-event-form__row">
+                            <label className="create-event-form__label" htmlFor="start_time">Start Time*</label>
                             <input 
-                                className="event-form__input"
+                                className="create-event-form__input"
                                 type="datetime-local" 
                                 id="start_time" 
                                 name="start_time" 
@@ -93,10 +93,10 @@ function CreateEvent(props) {
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className="event-form__row">
-                            <label className="event-form__label" htmlFor="end_time">End Time</label>
+                        <div className="create-event-form__row">
+                            <label className="create-event-form__label" htmlFor="end_time">End Time*</label>
                             <input 
-                                className="event-form__input"
+                                className="create-event-form__input"
                                 type="datetime-local" 
                                 id="end_time" 
                                 name="end_time" 
@@ -104,21 +104,21 @@ function CreateEvent(props) {
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className="event-form__row">
-                            <label className="event-form__label" htmlFor="description">Description</label>
+                        <div className="create-event-form__row">
+                            <label className="create-event-form__label" htmlFor="description">Description</label>
                             <textarea 
-                                className="event-form__input event-form__input--textarea"
+                                className="create-event-form__input create-event-form__input--textarea"
                                 id="description" 
                                 name="description" 
                                 value={eventInfo.description} 
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className="event-form__row">
-                            <h4 className="event-form__label">Age Restrictions</h4>
-                            <div className="event-form__wrapper">
-                                <div className="event-form__box">
-                                    <label className="event-form__label" htmlFor="all_ages">All Ages</label>
+                        <div className="create-event-form__row">
+                            <h4 className="create-event-form__label">Age Restrictions*</h4>
+                            <div className="create-event-form__wrapper">
+                                <div className="create-event-form__box">
+                                    <label className="create-event-form__label--radio" htmlFor="all_ages">All Ages:</label>
                                     <input 
                                         type="radio" 
                                         id="all_ages" 
@@ -128,8 +128,8 @@ function CreateEvent(props) {
                                         onChange={handleInputChange}
                                     />
                                 </div>
-                                <div className="event-form__box">
-                                    <label className="event-form__label" htmlFor="restricted">19+</label>
+                                <div className="create-event-form__box">
+                                    <label className="create-event-form__label--radio" htmlFor="restricted">19+:</label>
                                     <input 
                                         type="radio" 
                                         id="restricted" 
@@ -141,10 +141,10 @@ function CreateEvent(props) {
                                 </div>
                             </div>
                         </div>
-                        <div className="event-form__row">
-                            <label className="event-form__label" htmlFor="fee">Admission Cost</label>
+                        <div className="create-event-form__row">
+                            <label className="create-event-form__label" htmlFor="fee">Admission Cost</label>
                             <input 
-                                className="event-form__input"
+                                className="create-event-form__input"
                                 type="number" 
                                 id="fee" 
                                 name="fee" 
@@ -155,10 +155,10 @@ function CreateEvent(props) {
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className="event-form__row">
-                            <label className="event-form__label" htmlFor="category">Cateogry</label>
+                        <div className="create-event-form__row">
+                            <label className="create-event-form__label" htmlFor="category">Cateogry*</label>
                             <select 
-                                className="event-form__input"
+                                className="create-event-form__input"
                                 type="text" 
                                 id="category" 
                                 name="category" 
@@ -176,10 +176,10 @@ function CreateEvent(props) {
                                 <option value="Workshop">Workshop</option>
                             </select>
                         </div>
-                        <div className="event-form__actions">
-                            <Link to="/profile" className="event-form__button">Cancel</Link>
+                        <div className="create-event-form__actions">
+                            <Link to="/profile" className="create-event-form__button create-event-form__button--cancel">Cancel</Link>
                             <button 
-                                className="event-form__button"
+                                className="create-event-form__button"
                                 type="submit"
                                 disabled={!isFormValid()}
                             >

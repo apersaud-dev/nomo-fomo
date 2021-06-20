@@ -1,3 +1,5 @@
+@use './../abstracts/variables' as *;
+
 html, body, div, h1, h2, h3, h4, h5, h6, p, a, img, ol, ul, li, header, nav, main, section, blockquote, figcaption, footer {
     margin: 0;
     padding: 0;
@@ -17,7 +19,7 @@ html {
 }
 
 body {
-    background-color: #dddddd;
+    background-color: $dark;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 

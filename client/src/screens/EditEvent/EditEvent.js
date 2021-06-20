@@ -90,15 +90,15 @@ function EditEvent(props) {
         const endTime = date.format((new Date(eventInfo.end_time)), 'YYYY-MM-DDTHH:mm');
         
         return (
-            <div className="edit-event">
+            <div>
                 <Header {...props}/>
-                <main className="edit-event__container">
-                    <form className="event-form" onSubmit={handleFormSubmit}>
+                <main className="edit-event">
+                    <form className="edit-event-form" onSubmit={handleFormSubmit}>
                     <h1 className="edit-event__title">Edit Your Event</h1>
-                        <div className="event-form__row">
-                            <label className="event-form__label" htmlFor="name">Name*</label>
+                        <div className="edit-event-form__row">
+                            <label className="edit-event-form__label" htmlFor="name">Name*</label>
                             <input 
-                                className="event-form__input"
+                                className="edit-event-form__input"
                                 type="text" 
                                 id="name" 
                                 name="name" 
@@ -106,10 +106,10 @@ function EditEvent(props) {
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className="event-form__row">
-                            <label className="event-form__label" htmlFor="start_time">Start Time*</label>
+                        <div className="edit-event-form__row">
+                            <label className="edit-event-form__label" htmlFor="start_time">Start Time*</label>
                             <input 
-                                className="event-form__input event-form__input--datetime"
+                                className="edit-event-form__input edit-event-form__input--datetime"
                                 type="datetime-local" 
                                 id="start_time" 
                                 name="start_time" 
@@ -117,10 +117,10 @@ function EditEvent(props) {
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className="event-form__row">
-                            <label className="event-form__label" htmlFor="end_time">End Time*</label>
+                        <div className="edit-event-form__row">
+                            <label className="edit-event-form__label" htmlFor="end_time">End Time*</label>
                             <input 
-                                className="event-form__input event-form__input--datetime"
+                                className="edit-event-form__input edit-event-form__input--datetime"
                                 type="datetime-local" 
                                 id="end_time" 
                                 name="end_time" 
@@ -128,23 +128,23 @@ function EditEvent(props) {
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className="event-form__row">
-                            <label className="event-form__label" htmlFor="description">Description</label>
+                        <div className="edit-event-form__row">
+                            <label className="edit-event-form__label" htmlFor="description">Description</label>
                             <textarea 
-                                className="event-form__input event-form__input--textarea"
+                                className="edit-event-form__input edit-event-form__input--textarea"
                                 id="description" 
                                 name="description" 
                                 value={eventInfo.description} 
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className="event-form__row">
-                            <h4 className="event-form__label">Age Restrictions*</h4>
-                            <div className="event-form__wrapper">
-                                <div className="event-form__box">
-                                    <label className="event-form__label" htmlFor="all_ages">All Ages</label>
+                        <div className="edit-event-form__row">
+                            <h4 className="edit-event-form__label">Age Restrictions*</h4>
+                            <div className="edit-event-form__wrapper">
+                                <div className="edit-event-form__box">
+                                    <label className="edit-event-form__label--radio" htmlFor="all_ages">All Ages</label>
                                     <input 
-                                        className="event-form__input event-form__input--radio"
+                                        className="edit-event-form__input edit-event-form__input--radio"
                                         type="radio" 
                                         id="all_ages" 
                                         name="restrictions" 
@@ -153,10 +153,10 @@ function EditEvent(props) {
                                         onChange={handleInputChange}
                                     />
                                 </div>
-                                <div className="event-form__box">
-                                    <label className="event-form__label" htmlFor="restricted">19+</label>
+                                <div className="edit-event-form__box">
+                                    <label className="edit-event-form__label--radio" htmlFor="restricted">19+</label>
                                     <input 
-                                        className="event-form__input event-form__input--radio"
+                                        className="edit-event-form__input edit-event-form__input--radio"
                                         type="radio" 
                                         id="restricted" 
                                         name="restrictions" 
@@ -167,10 +167,10 @@ function EditEvent(props) {
                                 </div>
                             </div>
                         </div>
-                        <div className="event-form__row">
-                            <label className="event-form__label" htmlFor="fee">Admission Cost</label>
+                        <div className="edit-event-form__row">
+                            <label className="edit-event-form__label" htmlFor="fee">Admission Cost</label>
                             <input 
-                                className="event-form__input"
+                                className="edit-event-form__input"
                                 type="number" 
                                 id="fee" 
                                 name="fee" 
@@ -181,10 +181,10 @@ function EditEvent(props) {
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div className="event-form__row">
-                            <label className="event-form__label" htmlFor="category">Cateogry*</label>
+                        <div className="edit-event-form__row">
+                            <label className="edit-event-form__label" htmlFor="category">Cateogry*</label>
                             <select 
-                                className="event-form__input"
+                                className="edit-event-form__input"
                                 type="text" 
                                 id="category" 
                                 name="category" 
@@ -201,11 +201,11 @@ function EditEvent(props) {
                                 <option value="Workshop">Workshop</option>
                             </select>
                         </div>
-                        <div className="event-form__actions">
-                            <Link to="/profile" className="event-form__button">Cancel</Link>
+                        <div className="edit-event-form__actions">
+                            <Link to="/profile" className="edit-event-form__button edit-event-form__button--cancel">Cancel</Link>
                             <button 
                                 type="submit" 
-                                className="event-form__button"
+                                className="edit-event-form__button"
                                 disabled={!isFormValid()}
                                 >
                                     Save Event
