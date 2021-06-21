@@ -24,9 +24,9 @@ function Profile(props) {
 
     if(!businessInfo) {
         return (
-            <main>
-                <h4>You must be logged in to view this page.</h4>
-                <a href="http://localhost:8080/auth/google">Login</a>
+            <main className="must-login">
+                <h5 className="must-login__text">You must be logged in to view this page.</h5>
+                <a href="http://localhost:8080/auth/google" className="must-login__link">Login</a>
             </main>
         )
     } else {

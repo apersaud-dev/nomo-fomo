@@ -1,6 +1,26 @@
 @use './../../partials/abstracts/variables' as *;
-@use './../../partials/base/reset' as *;
 @use './../../partials/base/typography' as *;
+@use './../../partials/abstracts/mixins' as *;
+
+.must-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+
+    &__text {
+        @include headline5;
+        color: $white;
+        margin-bottom: 2rem;
+    }
+
+    &__link {
+        @include button;
+        @include button-secondary;
+        width: 120px;
+    }
+}
 
 .profile {
     background: $bg-colour;
