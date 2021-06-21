@@ -1,10 +1,10 @@
 @font-face {
-    font-family: 'Manrope';
-    src: url('./../../assets/Fonts/Manrope-VariableFont_wght.woff2') format('woff2 supports variations'), url('./../../assets/Fonts/Manrope-VariableFont_wght.woff2') format('woff2-variations');
+    font-family: 'Quicksand-Variable';
+    src: url('./../../assets/Fonts/Quicksand-VariableFont_wght.woff2') format('woff2 supports variations'), url('./../../assets/Fonts/Quicksand-VariableFont_wght.woff2') format('woff2-variations');
     font-weight: 200 800;
 }
 
-$app-font: 'Manrope', sans-serif;
+$app-font: 'Quicksand-Variable', sans-serif;
 
 $h1-font: 2rem $app-font;
 $h2-font: 1.5rem $app-font;
@@ -14,3 +14,17 @@ $h5-font: 0.875rem $app-font;
 $h6-font: 0.75rem $app-font;
 
 $p-font: 1rem $app-font;
+
+$headline1: 300 6.1875rem $app-font;
+$headline2: 300 3.875rem $app-font;
+$headline3: 400 3.0625rem $app-font;
+$headline4: 400 2.1875rem $app-font;
+$headline5: 400 1.5625rem $app-font;
+$headline6: 500 1.3125rem $app-font;
+$subtitle1: 400 1rem $app-font;
+$subtitle2: 500 0.875rem $app-font;
+$body1: 400 1rem $app-font;
+$body2: 400 0.875rem $app-font;
+$button-font: 500 0.875rem $app-font;
+$caption-font: 400 0.75rem $app-font;
+$overline-font: 400 0.625rem $app-font;

@@ -1,0 +1,96 @@
+@use './../../partials/base/typography' as *;
+@use './../../partials/abstracts/variables' as *;
+@use './../../partials/abstracts/mixins' as *;
+
+.edit-event {
+   @include card;
+   
+    &__title {
+        @include headline3;
+        color: $white;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.edit-event-form {
+    @include form;
+    position: relative;
+
+    &__row {
+        @include form-row;
+
+        &--short {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    &__wrapper {
+        @include form-wrapper;
+    }
+
+    &__box {
+        @include form-box;
+    }
+
+    &__label {
+        @include form-label;
+
+        &--radio {
+            @include body2;
+            color: $white;
+        }
+    }
+
+    &__input {
+        @include input;
+
+        &--textarea {
+            min-height: 6rem;
+        }
+
+        &--radio {
+            margin: 0 0 0.25rem 0.5rem;
+            background: $white;
+            box-shadow: none;
+        }
+    }
+
+    &__actions {
+        @include form-actions;
+    }
+
+    &__delete {
+        margin-right: 10.3rem;
+        background: $dark;
+        border-radius: 10px;
+        border: 1px solid rgba(7, 7, 7, 0.3);
+        width: 52px;
+        cursor: pointer;
+
+        &:hover {
+            background: $dark;
+            box-shadow: inset 7px 7px 14px #0e0e0e, inset -7px -7px 14px #3a3a3a;
+
+            .edit-event-form__icon {
+                fill: red;
+            }
+          }
+    }
+
+    &__svg {
+        height: 24px;
+    }
+
+    &__icon {
+        fill: $white;
+    }
+
+    &__button {
+        @include form-button;
+
+        &--cancel {
+           @include button-cancel;
+        }
+    }
+}

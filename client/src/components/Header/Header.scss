@@ -1,0 +1,44 @@
+@use './../../partials/base/reset' as *;
+@use './../../partials/base/typography' as *;
+@use './../../partials/abstracts/variables' as *;
+@use './../../partials/abstracts/mixins' as *;
+
+.header {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    &__nav {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__link {
+        @include button;
+        margin-left: 1.5rem; 
+        
+
+        &--active {
+            background: #242424;
+            box-shadow: inset 4px 4px 8px #0e0e0e, inset -4px -4px 8px #3a3a3a;
+        }
+
+        &--home {
+            width: 220px;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid;
+            border-image-source: linear-gradient(90deg, rgba(36,36,36,1) 0%, rgba(36,36,36,1) 100%);
+            border-image-slice: 1;
+            border-image-width: 2;
+
+            &:hover {
+                border-bottom: 1px solid;
+                border-image-source: linear-gradient(90deg, rgba(102,33,253,1) 0%, rgba(122,46,253,1) 16%, rgba(142,60,253,1) 32%, rgba(181,86,254,1) 50%, rgba(201,99,254,1) 68%, rgba(221,113,254,1) 84%, rgba(241,126,254,1) 100%);
+                border-image-slice: 1;
+                border-image-width: 2;
+            }
+        }
+    }
+}

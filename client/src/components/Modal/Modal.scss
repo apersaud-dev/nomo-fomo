@@ -1,0 +1,80 @@
+@use './../../partials/base/typography' as *;
+@use './../../partials/abstracts/variables' as *;
+@use './../../partials/abstracts/mixins' as *;
+
+.modal {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background: rgba(7, 7, 7, 0.75);
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+    &__window {
+        width: 500px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 2.5rem;
+        border-radius: 60px;
+        background: linear-gradient(145deg, #272727, #202020);
+        box-shadow:  7px 7px 14px #0e0e0e, -7px -7px 14px #3a3a3a;
+    }
+
+    &__close-box {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+        cursor: pointer;
+
+        &:hover .modal__close {
+            animation: 0.5s linear spin;
+        }
+    }
+
+    &__close {
+        font: $app-font;
+        font-weight: 700;
+        font-size: 30px;
+        color: $white;
+    }
+
+    &__message {
+        @include headline5;
+        color: $white;
+        text-align: center;
+        margin-bottom: 2rem;
+        height: 50%;
+    }
+
+    &__actions {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        z-index: 3;
+    }
+
+    &__cancel {
+        @include button-cancel;
+        margin: 0;
+    }
+
+    &__confirm {
+        @include button;
+        color: red;
+        margin: 0;
+    }
+}
+

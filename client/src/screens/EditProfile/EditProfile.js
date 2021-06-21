@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Header from './../../components/Header';
 import PlacesAutoComplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import './EditProfile.scss';
-
-// https://www.npmjs.com/package/react-places-autocomplete
-// https://www.youtube.com/watch?v=uJYqQdnw8LE
-// https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingAddressTypes
 
 function EditProfile(props) {
     const [businessInfo, setBusinessInfo] = useState(null);
@@ -112,6 +109,8 @@ function EditProfile(props) {
                 case "country":
                     setCountry(component.long_name);
                   break;
+                default:
+                    break;
             }
         })
         const combinedAddress = `${addressNumber} ${addressRoute}`;
@@ -127,64 +126,120 @@ function EditProfile(props) {
         )
     } else {
         return (
-            <main>
-                <h1>dummy content for now.</h1>
-                <form onSubmit={handleFormSubmit}>
-                    <div className="form__row">
-                        <label className="form__label" htmlFor="name">Business Name</label>
-                        <input type="text" name="name" id="name" value={businessInfo.name} onChange={handleInputChange}/>
-                    </div>
-                    {/* <div className="form__row">
-                        <label className="form__label" htmlFor="email">Email Address</label>
-                        <input type="email" id="email" name="email" value={businessInfo.email} onChange={handleInputChange}/>
-                    </div> */}
-                    <PlacesAutoComplete value={address} onChange={setAddress} onSelect={handleSelect}>
-                        {({getInputProps, suggestions, getSuggestionItemProps, loading}) => {
-                            return (
-                                <div className="form__row"> 
-                                    <label className="form__label" htmlFor="address">Address 1</label>
-                                    <input {...getInputProps({ placeholder: "Type address" })} id="address" name="address" />
-                                    <div>
-                                        {loading ? <div>...loading</div> : null }
+            <div>
+                <Header {...props}/>
+                <main className="edit-profile">
+                    <form className="profile-form" onSubmit={handleFormSubmit}>
+                        <h1 className="edit-profile__title">Edit Your Profile</h1>
+                        <div className="profile-form__row">
+                            <label className="profile-form__label" htmlFor="name">Business Name</label>
+                            <input 
+                                className="profile-form__input"
+                                type="text" 
+                                name="name" 
+                                id="name" 
+                                value={businessInfo.name} 
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <PlacesAutoComplete 
+                            value={address} 
+                            onChange={setAddress} 
+                            onSelect={handleSelect}
+                            // styles={myStyles}
+                        >
+                            {({getInputProps, suggestions, getSuggestionItemProps, loading}) => {
+                                return (
+                                    <div className="profile-form__row"> 
+                                        <label className="profile-form__label" htmlFor="address">Address 1</label>
+                                        <input 
+                                            {...getInputProps({ placeholder: "Type address" })} 
+                                            className="profile-form__input"
+                                            id="address" 
+                                            name="address" 
+                                        />
+                                        <div>
+                                            {loading ? <div>...loading</div> : null }
 
-                                        {suggestions.map((suggestion) => {
-                                            const style = { backgroundColor : suggestion.active ? "#dd71fe" : "#fff"}
+                                            {suggestions.map((suggestion) => {
+                                                const style = { 
+                                                    color: suggestion.active ? "#F17EFE" : "#f3eff5",
+                                                    border: suggestion.active? "1px solid rgba(7, 7, 7, 0.3)" : "none",
+                                                    borderRadius: "10px",
+                                                    padding: suggestion.active? "4px 16px": "4px 8px",
+                                                    marginBottom: "4px",
+                                                    boxShadow: suggestion.active ? "inset 5px 5px 10px #0e0e0e, inset -5px -5px 10px #3a3a3a" : "none"
+                                                }
 
-                                            return <div {...getSuggestionItemProps(suggestion, { style })}>{suggestion.description}</div>
-                                        })}
+                                                return <div {...getSuggestionItemProps(suggestion, {style})} className="profile-form__suggestions">{suggestion.description}</div>
+                                            })}
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                        }}
-                    </PlacesAutoComplete>
-                    {/* <div className="form__row">
-                        <label className="form__label" htmlFor="address">Address 1</label>
-                        <input type="text" id="address" name="address" value={businessInfo.address} onChange={handleInputChange}/>
-                    </div> */}
-                    <div className="form__row">
-                        <label className="form__label" htmlFor="address_two">Address 2</label>
-                        <input type="text" id="address_two" name="address_two" onChange={handleInputChange}/>
-                    </div>
-                    <div className="form__row">
-                        <label className="form__label" htmlFor="city">City</label>
-                        <input type="text" id="city" name="city" value={city} onChange={handleInputChange}/>
-                    </div>
-                    <div className="form__row">
-                        <label className="form__label" htmlFor="province">Province</label>
-                        <input type="text" id="province" name="province" value={province} onChange={handleInputChange}/>
-                    </div>
-                    <div className="form__row">
-                        <label className="form__label" htmlFor="postal_code">Postal Code</label>
-                        <input type="text" id="postal_code" name="postal_code" value={postal_code} onChange={handleInputChange}/>
-                    </div>
-                    <div className="form__row">
-                        <label className="form__label" htmlFor="country">Country</label>
-                        <input type="text" id="country" name="country" value={country} onChange={handleInputChange}/>
-                    </div>
-                    <Link to="/profile">Cancel</Link>
-                    <button type="submit">Save</button>
-                </form>
-            </main>
+                                )
+                            }}
+                        </PlacesAutoComplete>
+                        <div className="profile-form__row">
+                            <label className="profile-form__label" htmlFor="address_two">Address 2</label>
+                            <input 
+                                className="profile-form__input"
+                                type="text" 
+                                id="address_two" 
+                                name="address_two" 
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="profile-form__row">
+                            <label className="profile-form__label" htmlFor="city">City</label>
+                            <input 
+                                className="profile-form__input"
+                                type="text" 
+                                id="city" 
+                                name="city" 
+                                value={city} 
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="profile-form__row profile-form__row--short">
+                            <div className="profile-form__box">
+                                <label className="profile-form__label" htmlFor="province">Province</label>
+                                <input 
+                                    className="profile-form__input"
+                                    type="text" 
+                                    id="province" 
+                                    name="province" 
+                                    value={province} 
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="profile-form__box">
+                                <label className="profile-form__label" htmlFor="postal_code">Postal Code</label>
+                                <input 
+                                    className="profile-form__input"
+                                    type="text" 
+                                    id="postal_code" 
+                                    name="postal_code" 
+                                    value={postal_code} 
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                        </div>
+                        <div className="profile-form__row">
+                            <label className="profile-form__label" htmlFor="country">Country</label>
+                            <input 
+                                className="profile-form__input"
+                                type="text" 
+                                id="country" 
+                                name="country" 
+                                value={country} 
+                                onChange={handleInputChange}/>
+                        </div>
+                        <div className="profile-form__actions">
+                            <Link to="/profile" className="profile-form__button">Cancel</Link>
+                            <button type="submit" className="profile-form__button">Save</button>
+                        </div>
+                    </form>
+                </main>
+            </div>
         )
     }
 }

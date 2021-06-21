@@ -1,0 +1,69 @@
+@use './../../partials/base/typography' as *;
+@use './../../partials/abstracts/variables' as *;
+@use './../../partials/abstracts/mixins' as *;
+
+.create-event {
+    @include card;
+   
+    &__title {
+        @include headline3;
+        color: $white;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.create-event-form {
+    @include form;
+
+    &__row {
+        @include form-row;
+
+        &--short {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    &__wrapper {
+        @include form-wrapper;
+    }
+
+    &__box {
+        @include form-box;
+    }
+
+    &__label {
+        @include form-label;
+
+        &--radio {
+            @include body2;
+            color: $white;
+        }
+    }
+
+    &__input {
+        @include input;
+
+        &--textarea {
+            min-height: 6rem;
+        }
+
+        &--radio {
+            margin: 0 0 0.25rem 0.5rem;
+            background: $white;
+            box-shadow: none;
+        }
+    }
+
+    &__actions {
+        @include form-actions;
+    }
+
+    &__button {
+        @include form-button;
+
+        &--cancel {
+            @include button-cancel;
+        }
+    }
+}

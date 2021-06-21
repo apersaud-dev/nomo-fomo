@@ -1,0 +1,52 @@
+@use './../../partials/base/typography' as *;
+@use './../../partials/abstracts/variables' as *;
+@use './../../partials/abstracts/mixins' as *;
+
+.edit-profile {
+    @include card;
+    
+    &__title {
+        font: $h1-font;
+        font-weight: 500;
+        color: $white;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.profile-form {
+    @include form;
+
+    &__row {
+        @include form-row;
+
+        &--short {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    &__box {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__label {
+        @include form-label;
+    }
+
+    &__input {
+        @include input;
+    }
+
+    &__suggestions {
+        @include body2;    
+    }
+
+    &__actions {
+        @include form-actions;
+    }
+
+    &__button {
+        @include form-button;
+    }
+}
