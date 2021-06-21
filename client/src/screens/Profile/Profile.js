@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Header from './../../components/Header';
-import EventsHeader from './../../components/EventsHeader';
 import EventList from './../../components/EventList';
 import './Profile.scss';
 
@@ -18,7 +17,7 @@ function Profile(props) {
                 setBusinessInfo(res.data[0])
             })
             .catch((err) => {
-                console.log(err.response.data.message);
+                console.log(err);
             })
     }, [])
 
@@ -45,6 +44,8 @@ function Profile(props) {
             <div>
                 <Header {...props}/>
                 <main className="profile">
+
+                    <EventList events={events} />
                     {/* <div className="profile__card">
                         <h2>{name}</h2>
                         <h3>{email}</h3>
@@ -61,10 +62,9 @@ function Profile(props) {
                     </div> */}
                     {/* <Link to="/profile-edit">Edit Profile</Link>
                     <Link to="http://localhost:8080/logout">Logout</Link> */}
-                    <div className="profile__events-container">
-                        <EventsHeader />
-                        <EventList events={events} />
-                    </div>
+                    {/* <div className="profile__events-container"> */}
+                        
+                    {/* </div> */}
                 </main>
             </div>
         )
