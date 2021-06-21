@@ -1,30 +1,31 @@
-@use './../../partials/base/reset' as *;
 @use './../../partials/base/typography' as *;
 @use './../../partials/abstracts/variables' as *;
+@use './../../partials/abstracts/mixins' as *;
+
+.events-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__title {
+        @include headline3;
+        color: $white;
+        margin-bottom: 2rem;
+    }
+
+    &__create {
+        @include button;
+        margin-bottom: 3rem;
+    }
+}
 
 .event-list{
     padding: 0 1rem;
     padding-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem 2rem;
 }
 
-.custom-shape-divider-bottom-1624138048 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
-}
-
-.custom-shape-divider-bottom-1624138048 svg {
-    position: relative;
-    display: block;
-    width: calc(187% + 1.3px);
-    height: 174px;
-    transform: rotateY(180deg);
-}
-
-.custom-shape-divider-bottom-1624138048 .shape-fill {
-    fill: #7A2EFD;
-}

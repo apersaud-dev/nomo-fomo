@@ -23,20 +23,5 @@
 }
 
 .profile {
-    background: $bg-colour;
     min-height: 100vh;
-
-    &__card {
-        border: 2px solid red;
-        border-radius: 20px;
-    }
-
-    &__events-container {
-        // background: #E3D9E7;
-        background: #ECE6EF;
-        border-radius: 20px;
-        margin: 0 1rem;
-        // background: linear-gradient(145deg, #f3e8f7, #ccc3d0);
-        // box-shadow:  5px 5px 10px #9d969f, -5px -5px 10px #ffffff;
-    }
 }

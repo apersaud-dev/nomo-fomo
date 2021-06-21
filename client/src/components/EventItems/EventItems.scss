@@ -1,73 +1,115 @@
 @use './../../partials/abstracts/variables' as *;
-@use './../../partials/base/reset' as *;
 @use './../../partials/base/typography' as *;
+@use './../../partials/abstracts/mixins' as *;
 
 .event {
-    font: $p-font;
-    color: #6A00F5;
-    padding: 0.5rem;
-    border-radius: 14px;
-    margin-bottom: 0.5rem;
+    border-radius: 40px;
+    background: linear-gradient(145deg, #272727, #202020);
+    box-shadow:  5px 5px 10px #0e0e0e, -5px -5px 10px #3a3a3a;
+    padding: 1.5rem;
     display: flex;
-    align-items: center;
-    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    background-clip: padding-box;
+    border: solid 2px transparent;
 
-    &__icon {
-        width: 5%;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        z-index: -1;
+        margin: -2px; /* !importanté */
+        border-radius: 40px;
+        background: linear-gradient(90deg, rgba(102,33,253,1) 0%, rgba(122,46,253,1) 16%, rgba(142,60,253,1) 32%, rgba(181,86,254,1) 50%, rgba(201,99,254,1) 68%, rgba(221,113,254,1) 84%, rgba(241,126,254,1) 100%);
+        opacity: 0;
     }
 
-    &__number {
-        width: 5%;
+    &:hover {
+        box-shadow: none;
+        transition: 0.3s linear;
+
+        &:before {
+            opacity: 1;
+        }
+
+        .event__edit-box {
+            opacity: 1;
+            transition: all 0.3s linear;
+        }
+
+        .event__image {
+            filter: grayscale(1);
+            transition: 0.3s linear;
+        }
+        
+    }
+    
+    &__image {
+        width: 350px;
+        height: 225px;
+        object-fit: cover;
+        border-radius: 23px;
+        margin-bottom: 1.5rem;
+        transition: 0.3s linear;
+        background: $silver;
     }
 
     &__name {
-        font-weight: 800;
-        width: 32.5%
-    }
+        @include headline6;
+        color: $white;
+        padding-bottom: 0.25rem;
+        margin-bottom: 0.5rem;
+        position: relative;
 
-    &__date {
-        width: 22.5%;
-        font-weight: 450;
-    }
-
-    &__start {
-        width: 16.25%
-    }
-
-    &__end {
-        width: 16.25%
-    }
-
-    &__edit {
-        width: 7%;
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    &__edit-box {
-        width: 2rem;;
-        height: 2rem;
-        border-radius: 4px;
-        margin-right: 0.5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
-        transition: all 0.3s linear;
-
-        &:hover {
-            background: #6A00F5;
-            transition: all 0.3s linear;
-            .event__edit-icon {
-                fill: $white;
-            }
+        &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(102,33,253,1) 0%, rgba(122,46,253,1) 16%, rgba(142,60,253,1) 32%, rgba(181,86,254,1) 50%, rgba(201,99,254,1) 68%, rgba(221,113,254,1) 84%, rgba(241,126,254,1) 100%);
+            bottom: 0;
+            left: 0;
         }
     }
 
+    &__date {
+        @include subtitle1;
+        color: $white;
+        margin-bottom: 0.25rem;
+    }
+
+    &__time {
+        @include subtitle2;
+        color: $white;
+        margin-bottom: 1rem;
+    }
+
+    &__description {
+        max-width: 350px;
+        @include body1;
+        color: $white;
+        margin-bottom: 1rem;
+    }
+    
+    &__edit-box{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(36, 36, 36, 0.88);
+        border-radius: 40px;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s linear;      
+    }
+
     &__edit-icon {
-        width: 30px;
-        height: 30px;
-        padding: 0.25rem;
-        fill: #6A00F5;
+        fill: $white;
+        width: 75px;
+        height: 75px;
     }
 }
