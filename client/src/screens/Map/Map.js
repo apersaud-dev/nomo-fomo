@@ -64,7 +64,7 @@ function Map() {
             </main>
         )
     } else {
-        // console.log(bounds);
+        // console.log(zoom);
         return (
             <main className="screen">
                 <header className="screen__header"></header>
@@ -75,8 +75,10 @@ function Map() {
                         <GoogleMapReact 
                             options={MapStyle}
                             bootstrapURLKeys={{key: process.env.REACT_APP_GOOGLE_MAP_API_KEY}}
-                            defaultCenter={{lat: 43.64513929518148, lng: -79.39709079559223}}
-                            defaultZoom={18}
+                            defaultCenter={{ lat: 43.89755177369886, lng: -78.94293358034373}}
+                            defaultZoom={15}
+                            // defaultCenter={{lat: 43.64513929518148, lng: -79.39709079559223}}
+                            // defaultZoom={18}
                             yesIWantToUseGoogleMapApiInternals
                             onGoogleApiLoaded={({ map }) => {
                                 mapRef.current = map;
@@ -127,13 +129,13 @@ function Map() {
 
                                 return (
                                     <Marker key={cluster.properties.eventId} lat={latitude} lng={longitude}>
-                                        <button 
+                                        <div 
                                             className="map__marker" id={cluster.properties.eventId} 
                                             // onClick={markerClickHandler}
-                                            style={ zoom > 17 ? { width: "50px", height: "50px"} : {width: "25px", height: "25px"}
-                                            }
+                                            // style={ zoom > 17 ? { width: "50px", height: "50px"} : {width: "25px", height: "25px"}
+                                            // }
                                         >
-                                        </button>
+                                        </div>
                                     </Marker> 
                                 )
                             })}

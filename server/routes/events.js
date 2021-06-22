@@ -13,6 +13,10 @@ router
             qb.column('id', 'latitude', 'longitude', 'name');
             }}] 
         })
+        // Events.query(function(qb) {
+        //     qb.where('start_time', '>', Date.now());
+        // })
+        // .fetch()
         .then((events) => {
             const eventsArray = events.models;
             const businessIdRemoved = [];

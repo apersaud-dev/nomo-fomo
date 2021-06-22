@@ -23,7 +23,7 @@ function Drawer(props) {
     const latitude = Number(splitIt[0]);
     const longitude = Number(splitIt[1]);
     props.mapRef.current.panTo({ lat: latitude, lng: longitude })
-    props.mapRef.current.setZoom(18);
+    props.mapRef.current.setZoom(19);
   }
 
   return (

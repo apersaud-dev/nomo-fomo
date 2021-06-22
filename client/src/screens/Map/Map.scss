@@ -44,9 +44,46 @@
 
 .map {
     &__marker {
-        border-radius: 50%;
-        background: #f17efe;
-        box-shadow:  3px 3px 5px #cd6bd8, -3px -3px 5px #ff91ff;
-        cursor: pointer;
+        // border-radius: 50%;
+        // background: #f17efe;
+        // box-shadow:  3px 3px 5px #cd6bd8, -3px -3px 5px #ff91ff;
+     
+        position: relative;
+        display: inline-block;
+        width: 0;
+        height: 0;
+        
+        margin-left: 18px;
+        margin-right: 18px;
+        margin-bottom: 24px;
+        
+        border-right:  6px solid transparent;
+        border-bottom: 14px  solid $pink;
+        border-left:   6px solid transparent;
+
+        font-size: 24px;
+
+        &:before, &:after {
+            content: '';
+            
+            display: block;
+            width: 0;
+            height: 0;
+            
+            position: absolute;
+            top: 12px;
+            left: -20px;
+          
+            border-right:  20px solid transparent;
+            border-bottom: 14px  solid $pink;
+            border-left:   20px solid transparent;
+          
+            transform: rotate(-35deg);
+          }
+          
+          &:after {  
+            transform: rotate(35deg);
+          }
+
     }
 }
