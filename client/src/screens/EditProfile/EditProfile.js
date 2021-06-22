@@ -146,7 +146,6 @@ function EditProfile(props) {
                             value={address} 
                             onChange={setAddress} 
                             onSelect={handleSelect}
-                            // styles={myStyles}
                         >
                             {({getInputProps, suggestions, getSuggestionItemProps, loading}) => {
                                 return (
@@ -166,7 +165,8 @@ function EditProfile(props) {
                                                     color: suggestion.active ? "#F17EFE" : "#f3eff5",
                                                     border: suggestion.active? "1px solid rgba(7, 7, 7, 0.3)" : "none",
                                                     borderRadius: "10px",
-                                                    padding: suggestion.active? "4px 16px": "4px 8px",
+                                                    padding: "0.25rem 0.5rem",
+                                                    transform: suggestion.active ? "translateX(0.5rem)" : "translateX(0)",
                                                     marginBottom: "4px",
                                                     boxShadow: suggestion.active ? "inset 5px 5px 10px #0e0e0e, inset -5px -5px 10px #3a3a3a" : "none"
                                                 }
