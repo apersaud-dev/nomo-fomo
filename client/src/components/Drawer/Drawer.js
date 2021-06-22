@@ -1,145 +1,97 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-// import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
-// import MenuIcon from '@material-ui/icons/Menu';
-// import Toolbar from '@material-ui/core/Toolbar';
-// import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import date from 'date-and-time';
+import PlacesAutoComplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import Logo from './../../assets/Images/nomo-fomo-linear.svg';
+import './Drawer.scss';
 
-const drawerWidth = 240;
+function Drawer(props) {
+  const [address, setAddress] = useState("");
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-  },
-  appBar: {
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-  },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-}));
+  const handleSearchSelect = async (value) => {
+    const results = await geocodeByAddress(value);
+    const latLng = await getLatLng(results[0]);
+    setAddress(value);
+    props.mapRef.current.panTo({ lat: latLng.lat, lng: latLng.lng })
+    props.mapRef.current.setZoom(15);
+  }
 
-function ResponsiveDrawer(props) {
-  const { window } = props;
-  const classes = useStyles();
-  const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
-  const drawer = (
-    <div>
-      <div className={classes.toolbar} />
-      <Divider />
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
-
-  const container = window !== undefined ? () => window().document.body : undefined;
+  
+  const handleSelectEvent = (e) => {
+    // e.preventDefault();
+    const splitIt = e.target.id.split(",");
+    const latitude = Number(splitIt[0]);
+    const longitude = Number(splitIt[1]);
+    props.mapRef.current.panTo({ lat: latitude, lng: longitude })
+    props.mapRef.current.setZoom(18);
+  }
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        {/* <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Responsive drawer
-          </Typography>
-        </Toolbar> */}
-      </AppBar>
-      <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            variant="permanent"
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-      </nav>
-    </div>
-  );
+    <section className="drawer">
+      <div className="drawer__header">
+        <Link to="/">
+          <img src={Logo} alt="NOMO FOMO logo" className="drawer__logo" />
+        </Link>
+        <PlacesAutoComplete 
+            value={address} 
+            onChange={setAddress} 
+            onSelect={handleSearchSelect}
+        >
+          {({getInputProps, suggestions, getSuggestionItemProps, loading}) => {
+            return (
+              <div className="drawer__search"> 
+                <label className="drawer__search-label" htmlFor="address">Where do you want to explore?</label>
+                <input 
+                  {...getInputProps({ placeholder: "Search for a place" })} 
+                  className="drawer__search-input"
+                  id="address" 
+                  name="address" 
+                />
+                <div>
+                  {loading ? <div>...loading</div> : null }
+
+                  {suggestions.map((suggestion) => {
+                    const style = { 
+                      color: suggestion.active ? "#F17EFE" : "#f3eff5",
+                      border: suggestion.active? "1px solid rgba(7, 7, 7, 0.3)" : "none",
+                      borderRadius: "10px",
+                      padding: "0.25rem 0.5rem",
+                      transform: suggestion.active ? "translateX(0.5rem)" : "translateX(0)",
+                      marginBottom: "0.25rem",
+                      boxShadow: suggestion.active ? "inset 5px 5px 10px #0e0e0e, inset -5px -5px 10px #3a3a3a" : "none"
+                  }
+                
+                    return (
+                      <div {...getSuggestionItemProps(suggestion, {style})}    className="profile-form__suggestions">
+                        {suggestion.description}
+                      </div>
+                    )})}
+                </div>
+              </div>
+            )
+          }}
+        </PlacesAutoComplete>
+      </div>
+      <div className="drawer__events">
+        <ul className="drawer__event-list">
+          {props.markers.map((map) => {
+            const testString = `${map.businesses.latitude}, ${map.businesses.longitude}`;
+            const eventDate = date.format((new Date(map.start_time)), 'ddd, MMM DD YYYY')
+            const startTime = date.format((new Date(map.start_time)), 'hh:mm A');
+            const endTime = date.format((new Date(map.end_time)), 'hh:mm A');
+  
+            return (
+              <li key={map.display_id} className="drawer__event">
+                <h5 className="drawer__event-name" onClick={handleSelectEvent} id={testString}>{map.name}</h5>
+                <p className="drawer__event-date">{eventDate}</p>
+                <p className="drawer__event-time">{startTime} - {endTime}</p>
+              </li>
+            )
+          })}
+        </ul>
+        </div>
+    </section>
+  )
 }
 
-export default ResponsiveDrawer;
+export default Drawer;

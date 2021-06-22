@@ -1,4 +1,32 @@
 @use './../../partials/base/reset' as *;
+@use './../../partials/abstracts/variables' as *;
+@use './../../partials/abstracts/mixins' as *;
+
+.screen {
+    background: $dark;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    &__header {
+        height: 2vh;
+        z-index: 1;
+    }
+
+    &__footer {
+        height: 2vh;
+    }
+}
+
+.map-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.map {
+    width: calc(100% - 350px);
+    height: 96vh;
+}
 
 .cluster {
     color: #fff;
@@ -9,6 +37,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .map {
@@ -16,5 +45,6 @@
         border-radius: 50%;
         background: #f17efe;
         box-shadow:  3px 3px 5px #cd6bd8, -3px -3px 5px #ff91ff;
+        cursor: pointer;
     }
 }

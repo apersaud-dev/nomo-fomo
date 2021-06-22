@@ -4,7 +4,7 @@ import './EventItems.scss';
 
 function EventItems(props) {
     const { display_id, end_time, image, name, start_time, description } = props.eventData;
-    const eventDate = date.format((new Date(start_time)), 'ddd, MMM DD YYYY')
+    const eventDate = date.format((new Date(start_time)), 'ddd, MMM DD YYYY');
     const startTime = date.format((new Date(start_time)), 'hh:mm A');
     const endTime = date.format((new Date(end_time)), 'hh:mm A');
     
@@ -12,7 +12,7 @@ function EventItems(props) {
     return (
         <li>
             <Link to={`/edit/${display_id}`} className="event">
-            <img src={image === "" ? "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg" : image} className="event__image" />
+            <img src={image === "" ? "https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg" : image} className="event__image" alt="Event"/>
             <h3 className="event__name">Event: {name}</h3>
             <h4 className="event__date">Date: {eventDate}</h4>
             <p className="event__time">Time: {startTime} - {endTime}</p>

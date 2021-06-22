@@ -30,41 +30,13 @@ function Profile(props) {
         )
     } else {
         const { 
-            // name, 
-            // email, 
-            // address,
-            // address_two, 
-            // city, 
-            // province, 
-            // postal_code, 
-            // country, 
             events 
         } = businessInfo;
         return (
             <div>
                 <Header {...props}/>
                 <main className="profile">
-
                     <EventList events={events} />
-                    {/* <div className="profile__card">
-                        <h2>{name}</h2>
-                        <h3>{email}</h3>
-                        <h3>{address}</h3>
-                        <h3>{address_two}</h3>
-                        <div className="" >
-                            <h3>{city}</h3>
-                            <h3>{province}</h3>
-                        </div>
-                        <div className="">
-                            <h3>{postal_code}</h3>
-                            <h3>{country}</h3>
-                        </div>
-                    </div> */}
-                    {/* <Link to="/profile-edit">Edit Profile</Link>
-                    <Link to="http://localhost:8080/logout">Logout</Link> */}
-                    {/* <div className="profile__events-container"> */}
-                        
-                    {/* </div> */}
                 </main>
             </div>
         )
@@ -73,8 +45,4 @@ function Profile(props) {
 }
 export default Profile;
 
-// https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform#maps_places_autocomplete_addressform-javascript
-
 // https://bezkoder.com/node-js-upload-image-mysql/
-
-// https://pttrns.com/applications/676#8083
