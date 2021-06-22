@@ -1,4 +1,4 @@
-@use './../../partials/base/reset' as *;
+@use './../../partials/base/typography' as *;
 @use './../../partials/abstracts/variables' as *;
 @use './../../partials/abstracts/mixins' as *;
 
@@ -29,11 +29,13 @@
 }
 
 .cluster {
+    @include subtitle1;
     color: #fff;
     padding: 1rem;
     border-radius: 50%;
     background: #6621fd;
     box-shadow:  3px 3px 5px #571cd7, -3px -3px 5px #7526ff;
+    border: none;
     display: flex;
     justify-content: center;
     align-items: center;

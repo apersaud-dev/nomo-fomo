@@ -43,18 +43,18 @@ function Map() {
         options: {radius: 75, maxZoom: 20}
     });
 
-    const markerClickHandler = (e) => {
-        e.preventDefault();
-        axios
-            .get(`http://localhost:8080/events/${e.target.id}`)
-            .then((res)=> {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err.response);
-            });
+    // const markerClickHandler = (e) => {
+    //     e.preventDefault();
+    //     axios
+    //         .get(`http://localhost:8080/events/${e.target.id}`)
+    //         .then((res)=> {
+    //             console.log(res);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err.response);
+    //         });
 
-    }
+    // }
    
 
     if(!markers) {
@@ -129,7 +129,7 @@ function Map() {
                                     <Marker key={cluster.properties.eventId} lat={latitude} lng={longitude}>
                                         <button 
                                             className="map__marker" id={cluster.properties.eventId} 
-                                            onClick={markerClickHandler}
+                                            // onClick={markerClickHandler}
                                             style={ zoom > 17 ? { width: "50px", height: "50px"} : {width: "25px", height: "25px"}
                                             }
                                         >
