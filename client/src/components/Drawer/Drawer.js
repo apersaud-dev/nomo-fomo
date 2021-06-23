@@ -45,7 +45,7 @@ function Drawer(props) {
 
   const handleSelectEvent = (eventLat, eventLng) => {
     props.mapRef.current.panTo({ lat: eventLat, lng: eventLng })
-    props.mapRef.current.setZoom(19);
+    props.mapRef.current.setZoom(20);
   }
 
   return (
@@ -107,9 +107,11 @@ function Drawer(props) {
             return (
               <li key={map.id} className="drawer__event" onClick={() => {handleSelectEvent(eventLat, eventLng)}} >
                 <h5 className="drawer__event-name"  >{map.name}</h5>
+                <p className="drawer__event-location">{map.businesses.name}</p>
                 <p className="drawer__event-location">{map.businesses.address}, {map.businesses.city}, {map.businesses.province}</p>
-                <p className="drawer__event-date">{eventDate}</p>
-                <p className="drawer__event-time">{startTime} - {endTime}</p>
+                <p className="drawer__event-date"><span className="drawer__label-bold">Date:</span> {eventDate}</p>
+                <p className="drawer__event-time"><span className="drawer__label-bold">Time:</span> {startTime} - {endTime}</p>
+                <p className="drawer__event-admission"><span className="drawer__label-bold">Admission Fee:</span> {map.fee === 0.00 ? "Free" : `$${map.fee}`}</p>
               </li>
             )
           })}

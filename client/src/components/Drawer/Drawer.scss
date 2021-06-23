@@ -67,11 +67,13 @@
         @include subtitle1;
         text-decoration: underline;
         margin-bottom: 0.5rem;
+        color: $pink;
     }
 
     &__event-location {
         @include subtitle2;
         color: $light-grey;
+        margin-bottom: 0.25rem;
     }
 
     &__event-date {
@@ -81,5 +83,14 @@
 
     &__event-time {
         @extend .drawer__event-date;
+    }
+
+    &__event-admission {
+        @extend .drawer__event-date;
+    }
+
+    &__label-bold {
+        font-weight: 600;
+        margin-right: 0.25rem;
     }
 }
