@@ -3,23 +3,26 @@ const IsLoggedIn = require('./../middleware/IsLoggedIn');
 const { v4: uuidv4 } = require('uuid');
 const Business = require('./../models/businesses');
 const Events = require('./../models/events');
+const Bookshelf = require('./../bookshelf');
 const router = express.Router();
 
 // get all events with related business
 router
     .route('/')
     .get((req, res) => {
-        Events.fetchAll({ withRelated: [{'businesses': function(qb) {
-            qb.column('id', 'latitude', 'longitude', 'name');
+        Events.query(function(qb) {
+            qb.whereRaw('end_time >  NOW()').andWhereRaw('end_time < ADDDATE(NOW(), INTERVAL 3 DAY)')
+            console.log(qb.toSQL())
+        })
+        .fetchAll({ withRelated: [{'businesses': function(qb) {
+            qb.column('id', 'latitude', 'longitude', 'name', 'address', 'city', 'province');
             }}] 
         })
-        // Events.query(function(qb) {
-        //     qb.where('start_time', '>', Date.now());
-        // })
-        // .fetch()
         .then((events) => {
+            console.log(events);
             const eventsArray = events.models;
             const businessIdRemoved = [];
+
             // delete business id from fetched object
             for (let i=0; i< eventsArray.length; i++) {
                 delete eventsArray[i]['attributes']['business_id']
@@ -27,8 +30,10 @@ router
                 businessIdRemoved.push(eventsArray[i]);
             }
             res.status(200).json(businessIdRemoved);
+            // res.json(events);
         })
-        .catch(() => {
+        .catch((err) => {
+            console.log(err);
             res.status(400).json({ message: 'ERROR: cannot fetch events data' });
         });
     });
@@ -57,6 +62,7 @@ router
     .post(IsLoggedIn, (req, res) => {
         const businessDisplayId = req.session.passport.user;
         Business.where({ display_id: businessDisplayId})
+        // Business.where({ id: req.body.business_id})
         .fetch()
         .then((business)=> {
             // console.log(business)
@@ -71,6 +77,15 @@ router
                 fee: req.body.event.fee,
                 image: req.body.event.image,
                 category: req.body.event.category
+                // business_id: req.body.business_id,
+                // name: req.body.name,
+                // start_time: req.body.start_time,
+                // end_time: req.body.end_time,
+                // description: req.body.description,
+                // restrictions: req.body.restrictions,
+                // fee: req.body.fee,
+                // image: req.body.image,
+                // category: req.body.category
             })
             .save()
             .then((newEvent) => {

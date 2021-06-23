@@ -22,6 +22,7 @@ function EditProfile(props) {
         axios
             .get('http://localhost:8080/business', { withCredentials: true})
             .then((res) => {
+                // console.log(res.data);
                 setBusinessInfo(res.data[0])
                 setAddress(res.data[0].address);
                 setAddressTwo(res.data[0].address_two)
@@ -160,7 +161,7 @@ function EditProfile(props) {
                                         <div>
                                             {loading ? <div>...loading</div> : null }
 
-                                            {suggestions.map((suggestion) => {
+                                            {suggestions.map((suggestion, index) => {
                                                 const style = { 
                                                     color: suggestion.active ? "#F17EFE" : "#f3eff5",
                                                     border: suggestion.active? "1px solid rgba(7, 7, 7, 0.3)" : "none",
@@ -171,7 +172,7 @@ function EditProfile(props) {
                                                     boxShadow: suggestion.active ? "inset 5px 5px 10px #0e0e0e, inset -5px -5px 10px #3a3a3a" : "none"
                                                 }
 
-                                                return <div {...getSuggestionItemProps(suggestion, {style})} className="profile-form__suggestions">{suggestion.description}</div>
+                                                return <div {...getSuggestionItemProps(suggestion, {style})} className="profile-form__suggestions" key={index}>{suggestion.description}</div>
                                             })}
                                         </div>
                                     </div>

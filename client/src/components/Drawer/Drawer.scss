@@ -53,6 +53,7 @@
         border-radius: 10px;
         background: linear-gradient(145deg, #272727, #202020);
         box-shadow:  5px 5px 10px #0e0e0e, -5px -5px 10px #3a3a3a;
+        cursor: pointer;
 
         &:hover {
             transform: translateX(0.75rem);
@@ -64,15 +65,21 @@
 
     &__event-name {
         @include subtitle1;
-        cursor: pointer;
         text-decoration: underline;
+        margin-bottom: 0.5rem;
+    }
+
+    &__event-location {
+        @include subtitle2;
+        color: $light-grey;
     }
 
     &__event-date {
-        @include subtitle2;
+        @include body2;
+        color: $light-grey;
     }
 
     &__event-time {
-        @include body2;
+        @extend .drawer__event-date;
     }
 }

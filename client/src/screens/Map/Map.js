@@ -10,9 +10,11 @@ function Map() {
     // map setup
     const mapRef = useRef();
     const [zoom, setZoom] = useState(18);
-    const [bounds, setBounds] = useState(null);
+    const [bounds, setBounds] = useState([]);
     const [markers, setMarkers] = useState([]);
     const Marker = ({children}) => children;
+
+    console.log(markers);
 
     // load and format data
     useEffect(() => {
@@ -64,7 +66,6 @@ function Map() {
             </main>
         )
     } else {
-        // console.log(zoom);
         return (
             <main className="screen">
                 <header className="screen__header"></header>
@@ -134,6 +135,10 @@ function Map() {
                                             // onClick={markerClickHandler}
                                             // style={ zoom > 17 ? { width: "50px", height: "50px"} : {width: "25px", height: "25px"}
                                             // }
+                                            onClick={()=> {
+                                                mapRef.current.setZoom(20);
+                                                mapRef.current.panTo({ lat: latitude, lng: longitude})
+                                            }}
                                         >
                                         </div>
                                     </Marker> 
