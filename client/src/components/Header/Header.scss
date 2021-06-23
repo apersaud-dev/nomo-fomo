@@ -18,11 +18,20 @@
     &__link {
         @include button;
         margin-left: 1.5rem; 
+
+        &:hover {
+            background: linear-gradient(90deg, rgba(102,33,253,1) 0%, rgba(122,46,253,1) 16%, rgba(142,60,253,1) 32%, rgba(181,86,254,1) 50%, rgba(201,99,254,1) 68%, rgba(221,113,254,1) 84%, rgba(241,126,254,1) 100%);
+            background-clip: text;
+            color: transparent;
+        }
         
 
         &--active {
-            background: #242424;
+            // background: #242424;
             box-shadow: inset 4px 4px 8px #0e0e0e, inset -4px -4px 8px #3a3a3a;
+            background: linear-gradient(90deg, rgba(102,33,253,1) 0%, rgba(122,46,253,1) 16%, rgba(142,60,253,1) 32%, rgba(181,86,254,1) 50%, rgba(201,99,254,1) 68%, rgba(221,113,254,1) 84%, rgba(241,126,254,1) 100%);
+            background-clip: text;
+            color: transparent;
         }
 
         &--home {
