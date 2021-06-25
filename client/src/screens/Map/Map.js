@@ -14,7 +14,7 @@ function Map() {
     const [markers, setMarkers] = useState([]);
     const Marker = ({children}) => children;
 
-    console.log(markers);
+    // console.log(markers);
 
     // load and format data
     useEffect(() => {
@@ -45,20 +45,6 @@ function Map() {
         options: {radius: 75, maxZoom: 20}
     });
 
-    // const markerClickHandler = (e) => {
-    //     e.preventDefault();
-    //     axios
-    //         .get(`http://localhost:8080/events/${e.target.id}`)
-    //         .then((res)=> {
-    //             console.log(res);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err.response);
-    //         });
-
-    // }
-   
-
     if(!markers) {
         return (
             <main>
@@ -70,16 +56,12 @@ function Map() {
             <main className="screen">
                 <header className="screen__header"></header>
                 <div className="map-container">
-                    <div className="map" 
-                    // style={{ height: "100vh", width: "100% "}} 
-                    >
+                    <div className="map">
                         <GoogleMapReact 
-                            options={MapStyle}
+                            options={{ styles: MapStyle}}
                             bootstrapURLKeys={{key: process.env.REACT_APP_GOOGLE_MAP_API_KEY}}
                             defaultCenter={{ lat: 43.89755177369886, lng: -78.94293358034373}}
                             defaultZoom={15}
-                            // defaultCenter={{lat: 43.64513929518148, lng: -79.39709079559223}}
-                            // defaultZoom={18}
                             yesIWantToUseGoogleMapApiInternals
                             onGoogleApiLoaded={({ map }) => {
                                 mapRef.current = map;
@@ -132,9 +114,6 @@ function Map() {
                                     <Marker key={cluster.properties.eventId} lat={latitude} lng={longitude}>
                                         <div 
                                             className="map__marker" id={cluster.properties.eventId} 
-                                            // onClick={markerClickHandler}
-                                            // style={ zoom > 17 ? { width: "50px", height: "50px"} : {width: "25px", height: "25px"}
-                                            // }
                                             onClick={()=> {
                                                 mapRef.current.setZoom(20);
                                                 mapRef.current.panTo({ lat: latitude, lng: longitude})

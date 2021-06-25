@@ -114,7 +114,7 @@ router
                     name: req.body.updatedEvent.name,
                     start_time: req.body.updatedEvent.start_time,
                     end_time: req.body.updatedEvent.end_time,
-                    description: req.body.updatedEventdescription,
+                    description: req.body.updatedEvent.description,
                     restrictions: req.body.updatedEvent.restrictions,
                     fee: req.body.updatedEvent.fee,
                     image: req.body.updatedEvent.image,

@@ -16,14 +16,10 @@ function Drawer(props) {
     const nwLatBounds = Math.abs(props.bounds[3]);
 
     const filteredEvents = props.markers.filter((marker) => {
-      if (
-        nwLngBounds <= Math.abs(marker.businesses.longitude) &&
+      return nwLngBounds <= Math.abs(marker.businesses.longitude) &&
         Math.abs(marker.businesses.longitude) <= seLngBounds &&
         seLatBounds <= Math.abs(marker.businesses.latitude) &&
         Math.abs(marker.businesses.latitude) <= nwLatBounds
-      ) {
-        return marker
-      }
     });
 
     const sortedEvents = filteredEvents.sort((a, b) => {
@@ -31,7 +27,7 @@ function Drawer(props) {
     })
     setEvents(sortedEvents);
 
-  }, [props.bounds]);
+  }, [props.bounds, props.markers]);
 
   const handleSearchSelect = async (value) => {
     const results = await geocodeByAddress(value);
@@ -45,7 +41,7 @@ function Drawer(props) {
 
   const handleSelectEvent = (eventLat, eventLng) => {
     props.mapRef.current.panTo({ lat: eventLat, lng: eventLng })
-    props.mapRef.current.setZoom(19);
+    props.mapRef.current.setZoom(20);
   }
 
   return (
@@ -97,7 +93,6 @@ function Drawer(props) {
       <div className="drawer__events">
         <ul className="drawer__event-list">
           {events.map((map) => {
-            // const testString = `${map.businesses.latitude}, ${map.businesses.longitude}`;
             const eventDate = date.format((new Date(map.start_time)), 'ddd, MMM DD YYYY')
             const startTime = date.format((new Date(map.start_time)), 'hh:mm A');
             const endTime = date.format((new Date(map.end_time)), 'hh:mm A');
@@ -107,9 +102,11 @@ function Drawer(props) {
             return (
               <li key={map.id} className="drawer__event" onClick={() => {handleSelectEvent(eventLat, eventLng)}} >
                 <h5 className="drawer__event-name"  >{map.name}</h5>
+                <p className="drawer__event-location">{map.businesses.name}</p>
                 <p className="drawer__event-location">{map.businesses.address}, {map.businesses.city}, {map.businesses.province}</p>
-                <p className="drawer__event-date">{eventDate}</p>
-                <p className="drawer__event-time">{startTime} - {endTime}</p>
+                <p className="drawer__event-date"><span className="drawer__label-bold">Date:</span> {eventDate}</p>
+                <p className="drawer__event-time"><span className="drawer__label-bold">Time:</span> {startTime} - {endTime}</p>
+                <p className="drawer__event-admission"><span className="drawer__label-bold">Admission Fee:</span> {map.fee === 0.00 ? "Free" : `$${map.fee}`}</p>
               </li>
             )
           })}
