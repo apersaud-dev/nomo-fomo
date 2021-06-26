@@ -30,7 +30,6 @@ router
                 businessIdRemoved.push(eventsArray[i]);
             }
             res.status(200).json(businessIdRemoved);
-            // res.json(events);
         })
         .catch((err) => {
             console.log(err);
@@ -62,10 +61,8 @@ router
     .post(IsLoggedIn, (req, res) => {
         const businessDisplayId = req.session.passport.user;
         Business.where({ display_id: businessDisplayId})
-        // Business.where({ id: req.body.business_id})
         .fetch()
         .then((business)=> {
-            // console.log(business)
             new Events({
                 display_id: uuidv4(),
                 business_id: business.id,
@@ -77,15 +74,6 @@ router
                 fee: req.body.event.fee,
                 image: req.body.event.image,
                 category: req.body.event.category
-                // business_id: req.body.business_id,
-                // name: req.body.name,
-                // start_time: req.body.start_time,
-                // end_time: req.body.end_time,
-                // description: req.body.description,
-                // restrictions: req.body.restrictions,
-                // fee: req.body.fee,
-                // image: req.body.image,
-                // category: req.body.category
             })
             .save()
             .then((newEvent) => {
@@ -105,7 +93,6 @@ router
 router
     .route('/:eventId')
     .put(IsLoggedIn, (req, res) => {
-        // console.log(req.body.updatedEvent);
         Events.where({ display_id: req.params.eventId})
         .fetch()
         .then((event) => {

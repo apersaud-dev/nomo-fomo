@@ -22,7 +22,6 @@ function EditProfile(props) {
         axios
             .get('http://localhost:8080/business', { withCredentials: true})
             .then((res) => {
-                // console.log(res.data);
                 setBusinessInfo(res.data[0])
                 setAddress(res.data[0].address);
                 setAddressTwo(res.data[0].address_two)

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Header from './../../components/Header';
 import EventList from './../../components/EventList';
@@ -13,7 +12,6 @@ function Profile(props) {
         axios
             .get('http://localhost:8080/business', { withCredentials: true})
             .then((res) => {
-                // console.log(res.data[0]);
                 setBusinessInfo(res.data[0])
             })
             .catch((err) => {
@@ -44,5 +42,3 @@ function Profile(props) {
 
 }
 export default Profile;
-
-// https://bezkoder.com/node-js-upload-image-mysql/

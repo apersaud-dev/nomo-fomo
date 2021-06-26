@@ -14,8 +14,6 @@ function Map() {
     const [markers, setMarkers] = useState([]);
     const Marker = ({children}) => children;
 
-    // console.log(markers);
-
     // load and format data
     useEffect(() => {
         axios
